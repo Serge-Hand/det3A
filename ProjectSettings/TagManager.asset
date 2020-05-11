@@ -7,6 +7,9 @@ TagManager:
   - note
   - place
   - border
+  - Work
+  - POICarrier
+  - Searchable
   layers:
   - Default
   - TransparentFX
