@@ -15,10 +15,10 @@ public class BoardManager : MonoBehaviour
 
     private void Start()
     {
-        CreateBoard(5);
+        CreateBoard(3);
         CreateNote("Первый подозреваемый\nАлиби\n+", new List<NoteParameters> { new NoteParameters(1, 0, 0) });
         CreateNote("Первый подозреваемый\nМотив\n-", new List<NoteParameters> { new NoteParameters(-1, (NoteParameters.Row)1, 0) });
-        CreateNote("Четвёртый подозреваемый\nАлиби\n+", new List<NoteParameters> { new NoteParameters(1, 0, 3) });
+        CreateNote("Третий подозреваемый\nАлиби\n+", new List<NoteParameters> { new NoteParameters(1, 0, 2) });
 
         ProgressBar[] bars = FindObjectsOfType<ProgressBar>();
         foreach (ProgressBar bar in bars)
