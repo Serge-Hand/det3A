@@ -36,7 +36,7 @@ public class MagnifierDragScript : MonoBehaviour
 		if (Physics.Raycast(camPos, (end_line_point - camPos).normalized, out hit))
 			if (hit.collider.gameObject.tag.Equals("Searchable")) // Searchable Tag
 			{
-				Debug.LogWarning(hit.collider.gameObject.name); // Сообщение выводится когда линия отпускается над целевым объектом
+				//Debug.LogWarning(hit.collider.gameObject.name); // Сообщение выводится когда линия отпускается над целевым объектом
 
 				hit.transform.Rotate(new Vector3(20, 20, 0));
 				//Взять компонент объекта hit. Вызвать функцию. 

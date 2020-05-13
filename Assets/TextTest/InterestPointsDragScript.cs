@@ -124,6 +124,7 @@ public class InterestPointsDragScript : MonoBehaviour
 						string link_two_text = tmp_text_2.textInfo.linkInfo[second_link_index].GetLinkText();
 
 						Debug.Log(link_one_text + " + " + link_two_text);
+						//tmp_text.textInfo.linkInfo[first_link_index].
 					}
 				}
 				else
