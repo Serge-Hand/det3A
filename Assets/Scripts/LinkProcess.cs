@@ -10,7 +10,7 @@ public class LinkProcess : MonoBehaviour
     //Вторая цифра(0, 1) - есть ли у ссылки пара(0 - нет, 1 - да), если нет, то ссылку можно совместить только саму с собой, но парные сами с собой - нет
     //Третья цифра(произвольное целое число) - уникальный идентификатор ссылки; Могут быть соединены только ссылки с одинаковыми значениями.Если они разные: они не соединяются
 
-    public static void CheckLinks(string link1_ID, string link2_ID)
+    public static void CheckLinks(string link1_ID, string link1_text, string link2_ID, string link2_text)
     {
         string[] nums1 = link1_ID.Split('_');
         string[] nums2 = link2_ID.Split('_');
@@ -24,10 +24,10 @@ public class LinkProcess : MonoBehaviour
         if (!link1_ID.Equals(link2_ID))//если что-либо у ссылок не совпадает
         {
             //наказание
-            Debug.Log("Incorrect: Cant match");
+            Debug.Log("Incorrect: Can't match");
             return;
         }
-        if (link1_ID.Equals(link2_ID) && int.Parse(nums1[1]) == 0)//кликнуто на одну ссылку, но она парная, а не одиночная
+        if (int.Parse(nums1[1]) == 1 && link1_text.Equals(link2_text))//кликнуто на одну ссылку, но она парная, а не одиночная
         {
             //наказание
             Debug.Log("Incorrect: Expected a pair");
