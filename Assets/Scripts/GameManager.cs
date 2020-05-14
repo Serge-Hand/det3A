@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    private List<Note> notes;
+    private List<Note> notes = new List<Note>();
 
     private void Start()
     {

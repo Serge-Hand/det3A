@@ -58,7 +58,7 @@ public class BoardManager : MonoBehaviour
 
     public static void Compare(GameObject note, GameObject place)
     {
-       List<NoteParameters> param = note.GetComponent<Note>().GetParameters();
+       List<NoteParameters> param = note.GetComponent<NotePrefab>().GetParameters();
 
        if (param == null)
         {
@@ -91,7 +91,7 @@ public class BoardManager : MonoBehaviour
 
     public static void Detach (GameObject note, GameObject place)
     {
-        List<NoteParameters> param = note.GetComponent<Note>().GetParameters();
+        List<NoteParameters> param = note.GetComponent<NotePrefab>().GetParameters();
 
         if (param == null)
         {
@@ -127,8 +127,8 @@ public class BoardManager : MonoBehaviour
         GameObject newNote = Instantiate(notePrefab, new Vector3(15.85f, Random.Range(10.6f, 20f), Random.Range(-3.5f, 0f)), notePrefab.transform.rotation);
         newNote.transform.rotation = Quaternion.Euler(0, 360, 90);
         newNote.transform.GetChild(0).GetComponent<TextMeshPro>().text = note.GetText();
-        newNote.GetComponent<Note>().SetText(note.GetText());
-        newNote.GetComponent<Note>().SetParameters(note.GetParameters());
+        newNote.GetComponent<NotePrefab>().SetText(note.GetText());
+        newNote.GetComponent<NotePrefab>().SetParameters(note.GetParameters());
         notes.Add(newNote);
     }
 }

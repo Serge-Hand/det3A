@@ -27,7 +27,7 @@ public class LinkProcess : MonoBehaviour
             Debug.Log("Incorrect: Cant match");
             return;
         }
-        if (link1_ID.Equals(link2_ID) && int.Parse(nums1[1]) != 0)//кликнуто на одну ссылку, но она парная, а не одиночная
+        if (link1_ID.Equals(link2_ID) && int.Parse(nums1[1]) == 0)//кликнуто на одну ссылку, но она парная, а не одиночная
         {
             //наказание
             Debug.Log("Incorrect: Expected a pair");
