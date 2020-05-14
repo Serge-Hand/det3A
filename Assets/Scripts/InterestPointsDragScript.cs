@@ -154,6 +154,9 @@ public class InterestPointsDragScript : MonoBehaviour
 							string link_two_text = tmp_text_ugui_2.textInfo.linkInfo[second_link_index].GetLinkText();
 
 							Debug.Log(link_one_text + " + " + link_two_text);
+
+							LinkProcess.CheckLinks(tmp_text_ugui_2.textInfo.linkInfo[first_link_index].GetLinkID(), 
+								tmp_text_ugui_2.textInfo.linkInfo[second_link_index].GetLinkID());
 						}
 					}
 				}

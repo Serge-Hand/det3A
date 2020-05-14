@@ -16,9 +16,9 @@ public class BoardManager : MonoBehaviour
     private void Start()
     {
         CreateBoard(3);
-        CreateNote("Первый подозреваемый\nАлиби\n+", new List<NoteParameters> { new NoteParameters(1, 0, 0) });
-        CreateNote("Первый подозреваемый\nМотив\n-", new List<NoteParameters> { new NoteParameters(-1, (NoteParameters.Row)1, 0) });
-        CreateNote("Третий подозреваемый\nАлиби\n+", new List<NoteParameters> { new NoteParameters(1, 0, 2) });
+        //CreateNote("Первый подозреваемый\nАлиби\n+", new List<NoteParameters> { new NoteParameters(1, 0, 0) });
+        //CreateNote("Первый подозреваемый\nМотив\n-", new List<NoteParameters> { new NoteParameters(-1, (NoteParameters.Row)1, 0) });
+        //CreateNote("Третий подозреваемый\nАлиби\n+", new List<NoteParameters> { new NoteParameters(1, 0, 2) });
 
         ProgressBar[] bars = FindObjectsOfType<ProgressBar>();
         foreach (ProgressBar bar in bars)
@@ -122,13 +122,13 @@ public class BoardManager : MonoBehaviour
         }
     }
 
-    public void CreateNote(string text, List<NoteParameters> param)
+    public void CreateNote(Note note)
     {
         GameObject newNote = Instantiate(notePrefab, new Vector3(15.85f, Random.Range(10.6f, 20f), Random.Range(-3.5f, 0f)), notePrefab.transform.rotation);
         newNote.transform.rotation = Quaternion.Euler(0, 360, 90);
-        newNote.transform.GetChild(0).GetComponent<TextMeshPro>().text = text;
-        newNote.GetComponent<Note>().SetText(text);
-        newNote.GetComponent<Note>().SetParameters(param);
+        newNote.transform.GetChild(0).GetComponent<TextMeshPro>().text = note.GetText();
+        newNote.GetComponent<Note>().SetText(note.GetText());
+        newNote.GetComponent<Note>().SetParameters(note.GetParameters());
         notes.Add(newNote);
     }
 }
