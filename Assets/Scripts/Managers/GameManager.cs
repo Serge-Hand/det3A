@@ -7,17 +7,22 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     private static readonly string SAVE_FOLDER_NOTES = "/Files/Notes/";
+    private static readonly string SAVE_FOLDER_DOCUMENTS = "/Files/Documents/";
 
     private List<Note> notes = new List<Note>();
+    private List<string> documents = new List<string>();
 
     private void Start()
     {
         /*notes.Add(new Note(0, "Test note 0 (Первый, Алиби +)", new List<NoteParameters> { new NoteParameters(1, 0, 0) }));
         notes.Add(new Note(1, "Test note 1 (Первый, Мотив -)", new List<NoteParameters> { new NoteParameters(-1, 1, 0) }));
         notes.Add(new Note(2, "Test note 2 (Третий, Алиби +)", new List<NoteParameters> { new NoteParameters(1, 0, 2) }));*/
+        /*documents.Add("Проверка 0");
+        documents.Add("Проверка 1");
+        documents.Add("Проверка 2");*/
 
-        //SaveNotes();
-        LoadNotes("notes1.txt");
+        //Save();
+        Load(1);
     }
 
     public void CreateNote(int ID)
@@ -39,19 +44,28 @@ public class GameManager : MonoBehaviour
         Debug.Log("Note already exists!");
     }
 
-    public void LoadNotes(string filename)
+    public void Load(int caseIndex)
     {
-        string json = File.ReadAllText(Application.dataPath + SAVE_FOLDER_NOTES + filename);
-        NotesListHelper helper = JsonUtility.FromJson<NotesListHelper>(json);
-        notes = helper.GetAll();
+        string jsonNotes = File.ReadAllText(Application.dataPath + SAVE_FOLDER_NOTES + "notes" + caseIndex + ".txt");
+        string jsonDocs = File.ReadAllText(Application.dataPath + SAVE_FOLDER_DOCUMENTS + "documents" + caseIndex + ".txt");
+
+        NotesListHelper helperNotes = JsonUtility.FromJson<NotesListHelper>(jsonNotes);
+        DocumentsListHelper helperDocs = JsonUtility.FromJson<DocumentsListHelper>(jsonDocs);
+
+        notes = helperNotes.GetAll();
+        documents = helperDocs.GetAll();
     }
 
-    public void SaveNotes()
+    public void Save()
     {
-        NotesListHelper helper = new NotesListHelper();
+        /*NotesListHelper helper = new NotesListHelper();
         helper.AddAll(notes);
         string json = JsonUtility.ToJson(helper, true);
-        File.WriteAllText(Application.dataPath + SAVE_FOLDER_NOTES + "notes1.txt", json);
+        File.WriteAllText(Application.dataPath + SAVE_FOLDER_NOTES + "notes1.txt", json);*/
+        /*DocumentsListHelper helper = new DocumentsListHelper();
+        helper.AddAll(documents);
+        string json = JsonUtility.ToJson(helper, true);
+        File.WriteAllText(Application.dataPath + SAVE_FOLDER_DOCUMENTS + "documents1.txt", json);*/
     }
 
     [Serializable]
@@ -78,6 +92,33 @@ public class GameManager : MonoBehaviour
         public List<Note> GetAll()
         {
             return notes;
+        }
+    }
+
+    [Serializable]
+    private class DocumentsListHelper
+    {
+        [SerializeField]
+        private List<string> documents;
+
+        public DocumentsListHelper()
+        {
+            documents = new List<string>();
+        }
+
+        public void Add(string text)
+        {
+            documents.Add(text);
+        }
+
+        public void AddAll(List<string> documents)
+        {
+            this.documents = documents;
+        }
+
+        public List<string> GetAll()
+        {
+            return documents;
         }
     }
 }
