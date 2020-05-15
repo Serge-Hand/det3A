@@ -4062,7 +4062,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &690023807
 MonoBehaviour:
@@ -4196,7 +4196,7 @@ Transform:
   m_Children:
   - {fileID: 1501097270}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 180.00002, z: 0}
 --- !u!1 &726191615
 GameObject:
@@ -5984,7 +5984,7 @@ Transform:
   - {fileID: 322055527}
   - {fileID: 757570953}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1035584106
 PrefabInstance:
@@ -7532,7 +7532,7 @@ Transform:
   m_Children:
   - {fileID: 2022305483}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 360, z: 90.00001}
 --- !u!1 &1249841671
 GameObject:
@@ -10481,7 +10481,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 167.142, y: -81.991, z: -25.130981}
 --- !u!1 &1557206645
 GameObject:
@@ -11776,7 +11776,7 @@ Transform:
   - {fileID: 912979755}
   - {fileID: 463058115}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1737239480
 GameObject:
@@ -17027,6 +17027,92 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 846139426}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1934763090
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1934763091}
+  - component: {fileID: 1934763092}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1934763091
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1934763090}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 14.950346, y: -73.16454, z: -23.04695}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1934763092
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1934763090}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fe4b500364dc714fb683e68bb47d588, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: themeMusic
+    clip: {fileID: 8300000, guid: 3a8095fb9b67f4b4d95fc77e006ebc8d, type: 3}
+    volume: 0.4
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: writingSound
+    clip: {fileID: 8300000, guid: 31657cfe02d1dde41bdef11aeaf0e66f, type: 3}
+    volume: 0.9
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: paperSound
+    clip: {fileID: 8300000, guid: 711db926fdd4310478b5a02c0412937a, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: paperSound1
+    clip: {fileID: 8300000, guid: 963aa694f64deab4cbe91ac81721f7a1, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: putNoteSound
+    clip: {fileID: 8300000, guid: 43dbbab64b96eb24cafc332bf9237644, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: waveSound
+    clip: {fileID: 8300000, guid: abf43fb01008e634b8ace784ed62fb45, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: hintSound
+    clip: {fileID: 8300000, guid: 8e60ed4755933a54481163e334790143, type: 3}
+    volume: 0.3
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
 --- !u!1001 &1964420857
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18048,7 +18134,7 @@ Transform:
   m_LocalScale: {x: 1, y: -0.8393, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!1 &2145254009
 GameObject:
