@@ -5,7 +5,8 @@ using UnityEngine;
 public class NotePlace : MonoBehaviour
 {
     private int column;
-    NoteParameters.Row row;
+    //NoteParameters.Row row;
+    int row;
 
    /* private void Start()
     {
@@ -17,7 +18,7 @@ public class NotePlace : MonoBehaviour
     {
         return column;
     }
-    public NoteParameters.Row GetRow()
+    public int GetRow()
     {
         return row;
     }
@@ -26,7 +27,7 @@ public class NotePlace : MonoBehaviour
     {
         this.column = column;
     }
-    public void SetRow(NoteParameters.Row row)
+    public void SetRow(int row)
     {
         this.row = row;
     }

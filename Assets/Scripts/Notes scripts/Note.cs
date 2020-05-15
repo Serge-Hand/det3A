@@ -1,11 +1,15 @@
-﻿
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+[Serializable]
 public class Note
 {
+    [SerializeField]
     private int ID;
+    [SerializeField]
     private string text;
+    [SerializeField]
     private List<NoteParameters> parameters;
 
     public Note(int ID, string text, List<NoteParameters> parameters)

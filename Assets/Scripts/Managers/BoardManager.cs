@@ -40,7 +40,7 @@ public class BoardManager : MonoBehaviour
                 GameObject newPlace = Instantiate(notePlacePrefab, new Vector3(transform.position.x - 0.02f, nextPositionY, nextPositionZ), notePlacePrefab.transform.rotation);
                 //newPlace.transform.SetParent(transform, false);
                 newPlace.transform.rotation = Quaternion.Euler(0, 360, 90);
-                newPlace.GetComponent<NotePlace>().SetRow((NoteParameters.Row) i);
+                newPlace.GetComponent<NotePlace>().SetRow(i);
                 newPlace.GetComponent<NotePlace>().SetColumn(j);
                 nextPositionZ -= (notePlacePrefab.GetComponent<Renderer>().bounds.size.x + gapX);
             }

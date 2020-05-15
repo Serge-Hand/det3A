@@ -1,18 +1,25 @@
-﻿
+﻿using System;
+using UnityEngine;
+
+[Serializable]
 public class NoteParameters
 {
+    [SerializeField]
     private int value;
-    public enum Row
+    /*public enum Row
     {
         Alibi,
         Motive,
         Clue,
         Relationship
-    }
-    Row row;
+    }*/
+    [SerializeField]
+    //private Row row;
+    private int row;
+    [SerializeField]
     private int column;
 
-    public NoteParameters(int value, Row row, int column)
+    public NoteParameters(int value, int row, int column)
     {
         this.value = value;
         this.row = row;
@@ -23,7 +30,7 @@ public class NoteParameters
     {
         return column;
     }
-    public Row GetRow()
+    public int GetRow()
     {
         return row;
     }

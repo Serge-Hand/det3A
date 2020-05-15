@@ -1,0 +1,37 @@
+{
+    "notes": [
+        {
+            "ID": 0,
+            "text": "Test note 0 (Первый, Алиби +)",
+            "parameters": [
+                {
+                    "value": 1,
+                    "row": 0,
+                    "column": 0
+                }
+            ]
+        },
+        {
+            "ID": 1,
+            "text": "Test note 1 (Первый, Мотив -)",
+            "parameters": [
+                {
+                    "value": -1,
+                    "row": 1,
+                    "column": 0
+                }
+            ]
+        },
+        {
+            "ID": 2,
+            "text": "Test note 2 (Третий, Алиби +)",
+            "parameters": [
+                {
+                    "value": 1,
+                    "row": 0,
+                    "column": 2
+                }
+            ]
+        }
+    ]
+}
