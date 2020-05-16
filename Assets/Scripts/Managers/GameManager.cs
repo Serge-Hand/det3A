@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
-using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -12,9 +11,6 @@ public class GameManager : MonoBehaviour
 
     private List<Note> notes = new List<Note>();
     private List<string> documents = new List<string>();
-
-    [SerializeField]
-    private GameObject documentPrefab;
 
     private void Start()
     {
@@ -27,7 +23,16 @@ public class GameManager : MonoBehaviour
 
         //Save();
         Load(1);
-        CreateDocuments();
+
+        TimeManager timeMan = GameObject.Find("TimeManager").GetComponent<TimeManager>();
+        if (timeMan == null)
+        {
+            Debug.LogWarning("TimeManager don't found");
+        }
+        else
+        {
+            timeMan.StartTimer(8, 18);
+        }
     }
 
     public void CreateNote(int ID)
@@ -53,26 +58,6 @@ public class GameManager : MonoBehaviour
         else
         {
             FindObjectOfType<AudioManager>().Play("writingSound");
-        }
-    }
-
-    public void CreateDocuments()
-    {
-        Zoom[] tmp = FindObjectsOfType<Zoom>();
-        foreach (Zoom z in tmp)//удаляем старые документы со сцены
-        {
-            Destroy(z.gameObject);
-        }
-
-        float x = 8.88f;
-        float y = 6.24f;
-        foreach (string s in documents)
-        {
-            GameObject newDoc = Instantiate(documentPrefab, new Vector3(x/*UnityEngine.Random.Range(4f, 8.5f)*/, y, 3.5f/*UnityEngine.Random.Range(1.5f, 4.5f)*/), documentPrefab.transform.rotation);
-            newDoc.transform.rotation = Quaternion.Euler(0, UnityEngine.Random.Range(165, 195), 0);
-            newDoc.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = s;
-            x -= 0.9f;
-            y += 0.01f;
         }
     }
 

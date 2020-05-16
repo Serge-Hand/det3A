@@ -8,6 +8,8 @@ public class MagnifierDragScript : MonoBehaviour
 
 	Vector3 camPos;
 
+	TimeManager timeMan;
+
 	void Start()
 	{
 		line = gameObject.AddComponent<LineRenderer>();
@@ -15,6 +17,13 @@ public class MagnifierDragScript : MonoBehaviour
 
 		line.startColor = Color.red;
 		line.endColor = Color.red;
+
+		timeMan = GameObject.Find("TimeManager").GetComponent<TimeManager>();
+		if(timeMan == null)
+		{
+			Debug.LogError("TimeManager don't found");
+			this.enabled = false;
+		}
 	}
 
 	void OnMouseDown()
@@ -41,6 +50,8 @@ public class MagnifierDragScript : MonoBehaviour
 				hit.transform.Rotate(new Vector3(20, 20, 0));
 				//Взять компонент объекта hit. Вызвать функцию. 
 				//Эта функция должна 'исследовать' объект, т.е. открывать Точки Интереса, а также блокировать возможность повторного исследования того же объекта
+
+				timeMan.AddMinutesToTime(TimeManager.c_magnifierMinutesPlus); // Количество минут, которые тратятся на исследование лупой задаётся в TimeManager
 			}
 	}
 
