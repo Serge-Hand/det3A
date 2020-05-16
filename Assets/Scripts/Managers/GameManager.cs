@@ -23,6 +23,16 @@ public class GameManager : MonoBehaviour
 
         //Save();
         Load(1);
+
+        TimeManager timeMan = GameObject.Find("TimeManager").GetComponent<TimeManager>();
+        if (timeMan == null)
+        {
+            Debug.LogWarning("TimeManager don't found");
+        }
+        else
+        {
+            timeMan.StartTimer(8, 18);
+        }
     }
 
     public void CreateNote(int ID)

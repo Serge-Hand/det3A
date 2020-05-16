@@ -15,6 +15,18 @@ public class MoveNote : MonoBehaviour
 
     public float speed = 1.0f;
 
+    TimeManager timeMan;
+
+    void Start()
+    {
+        timeMan = GameObject.Find("TimeManager").GetComponent<TimeManager>();
+        if (timeMan == null)
+        {
+            Debug.LogError("TimeManager don't found");
+            this.enabled = false;
+        }
+    }
+
     private void Update()
     {
         float step = speed * Time.deltaTime;
@@ -33,6 +45,7 @@ public class MoveNote : MonoBehaviour
                 //print(currPlace.transform.name[0].ToString());
                 isAttached = false;
                 BoardManager.Compare(gameObject, currPlace);
+                timeMan.AddMinutesToTime(TimeManager.c_deskMinutesPlus); // Количество минут, которые тратятся на установку заметки в доску задаётся в TimeManager
             }
         }
         if (isOut)

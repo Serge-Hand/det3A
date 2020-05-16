@@ -15,6 +15,8 @@ public class InterestPointsDragScript : MonoBehaviour
 
 	int first_link_index;
 
+	TimeManager timeMan;
+
 	void Start()
 	{
 		line = gameObject.AddComponent<LineRenderer>();
@@ -28,6 +30,13 @@ public class InterestPointsDragScript : MonoBehaviour
 		if (tmp_text == null)
 		{
 			tmp_text_ugui = GetComponent<TextMeshProUGUI>();
+		}
+
+		timeMan = GameObject.Find("TimeManager").GetComponent<TimeManager>();
+		if (timeMan == null)
+		{
+			Debug.LogError("TimeManager don't found");
+			this.enabled = false;
 		}
 	}
 	
@@ -154,6 +163,8 @@ public class InterestPointsDragScript : MonoBehaviour
 							string link_two_text = tmp_text_ugui_2.textInfo.linkInfo[second_link_index].GetLinkText();
 
 							Debug.Log(link_one_text + " + " + link_two_text);
+
+							timeMan.AddMinutesToTime(TimeManager.c_linksMinutesPlus); // Количество минут, которые тратятся на соединение точек интереса задаётся в TimeManager
 
 							LinkProcess.CheckLinks(
 								tmp_text_ugui_2.textInfo.linkInfo[first_link_index].GetLinkID(),
