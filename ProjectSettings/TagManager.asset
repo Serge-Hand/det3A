@@ -10,6 +10,7 @@ TagManager:
   - Work
   - POICarrier
   - Searchable
+  - text
   layers:
   - Default
   - TransparentFX
