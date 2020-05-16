@@ -32,6 +32,7 @@ public class GameManager : MonoBehaviour
 
     public void CreateNote(int ID)
     {
+        bool isCreated = false;
         int i = 0;
         foreach (Note note in notes)
         {
@@ -39,14 +40,20 @@ public class GameManager : MonoBehaviour
             {
                 FindObjectOfType<BoardManager>().CreateNote(note);
                 notes.Remove(note);
-                FindObjectOfType<AudioManager>().Play("writingSound");
                 Debug.Log("Note created!");
-                return;
+                isCreated = true;
             }
             i++;
         }
-        FindObjectOfType<AudioManager>().Play("hintSound");
-        Debug.Log("Note already exists!");
+        if (!isCreated)
+        {
+            FindObjectOfType<AudioManager>().Play("hintSound");
+            Debug.Log("Note already exists!");
+        }
+        else
+        {
+            FindObjectOfType<AudioManager>().Play("writingSound");
+        }
     }
 
     public void CreateDocuments()
