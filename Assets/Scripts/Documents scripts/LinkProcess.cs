@@ -38,6 +38,7 @@ public class LinkProcess : MonoBehaviour
         }
         //если всё верно
         //сгенерировать заметку
+        Debug.Log(link1_ID);
         FindObjectOfType<GameManager>().CreateNote(int.Parse(nums1[2]));
     }
 }
