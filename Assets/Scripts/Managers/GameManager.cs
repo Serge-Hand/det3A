@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,6 +12,9 @@ public class GameManager : MonoBehaviour
 
     private List<Note> notes = new List<Note>();
     private List<string> documents = new List<string>();
+
+    [SerializeField]
+    private GameObject documentPrefab;
 
     private void Start()
     {
@@ -23,6 +27,7 @@ public class GameManager : MonoBehaviour
 
         //Save();
         Load(1);
+        CreateDocuments();
     }
 
     public void CreateNote(int ID)
@@ -42,6 +47,19 @@ public class GameManager : MonoBehaviour
         }
         FindObjectOfType<AudioManager>().Play("hintSound");
         Debug.Log("Note already exists!");
+    }
+
+    public void CreateDocuments()
+    {
+        Zoom[] tmp = FindObjectsOfType<Zoom>();
+        foreach (Zoom z in tmp)//удаляем старые документы со сцены
+        {
+            Destroy(z.gameObject);
+        }
+
+        GameObject newDoc = Instantiate(documentPrefab, new Vector3(8.6f, 6.24f, 1.5f), documentPrefab.transform.rotation);
+        newDoc.transform.rotation = Quaternion.Euler(0, 180, 0);
+        newDoc.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = documents[0];
     }
 
     public void Load(int caseIndex)
