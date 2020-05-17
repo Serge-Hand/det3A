@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using TMPro;
+using System.Text.RegularExpressions;
 
 public class MagnifierDragScript : MonoBehaviour
 {
@@ -47,9 +49,12 @@ public class MagnifierDragScript : MonoBehaviour
 			{
 				//Debug.LogWarning(hit.collider.gameObject.name); // Сообщение выводится когда линия отпускается над целевым объектом
 
-				hit.transform.Rotate(new Vector3(20, 20, 0));
+				//hit.transform.Rotate(new Vector3(20, 20, 0));
+
 				//Взять компонент объекта hit. Вызвать функцию. 
 				//Эта функция должна 'исследовать' объект, т.е. открывать Точки Интереса, а также блокировать возможность повторного исследования того же объекта
+
+				SearchObject(hit.collider.gameObject);
 
 				timeMan.AddMinutesToTime(TimeManager.c_magnifierMinutesPlus); // Количество минут, которые тратятся на исследование лупой задаётся в TimeManager
 			}
@@ -63,5 +68,31 @@ public class MagnifierDragScript : MonoBehaviour
 
 		line.SetPosition(0, (transform.position - camPos).normalized + camPos);
 		line.SetPosition(1, end_line_point);
+	}
+
+	void SearchObject(GameObject searchableObject)
+	{
+		searchableObject.tag = "POICarrier";
+
+		TextMeshProUGUI textComp = searchableObject.transform.GetComponentInChildren<TextMeshProUGUI>();
+		string text = textComp.text;
+
+		//text = text.Replace("<color=black>","<color=red>");
+		//Debug.Log(text);
+
+		int colorNum = 0;
+		string[] colors = { "red", "yellow" };
+
+		while(text.Contains("<color=black>"))
+		{
+			Regex regex = new Regex(Regex.Escape("<color=black>"));
+			text = regex.Replace(text, "<color=" + colors[colorNum] + ">", 1);
+
+			colorNum++;
+			if (colorNum >= colors.Length)
+				colorNum = 0;
+		}
+
+		textComp.text = text;
 	}
 }
