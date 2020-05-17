@@ -115,68 +115,78 @@ public class InterestPointsDragScript : MonoBehaviour
 	{
 		int second_link_index;
 
-		line.enabled = false;
+		if (line.enabled)
+		{
+			line.enabled = false;
 
-		camPos = Camera.main.transform.position;
+			camPos = Camera.main.transform.position;
 
-		RaycastHit hit;
-		if (Physics.Raycast(camPos, (end_line_point - camPos).normalized, out hit))
-			if (hit.collider.gameObject.tag.Equals("POICarrier")) // POICarrier Tag
-			{
-				TextMeshPro tmp_text_2 = hit.transform.GetComponentInChildren<TextMeshPro>();
-				if (tmp_text_2 != null)
+			RaycastHit hit;
+			if (Physics.Raycast(camPos, (end_line_point - camPos).normalized, out hit))
+				if (hit.collider.gameObject.tag.Equals("POICarrier")) // POICarrier Tag
 				{
-					second_link_index = TMP_TextUtilities.FindIntersectingLink(tmp_text_2, Input.mousePosition, Camera.main);
-					if (second_link_index != -1)
+					TextMeshPro tmp_text_2 = hit.transform.GetComponentInChildren<TextMeshPro>();
+					if (tmp_text_2 != null)
 					{
-						//2 - Выполнять необходимые действия - Сначала анализ ссылок, а затем Создание заметок и т.д.
-
-						string link_one_text = tmp_text.textInfo.linkInfo[first_link_index].GetLinkText();
-						string link_two_text = tmp_text_2.textInfo.linkInfo[second_link_index].GetLinkText();
-
-						Debug.Log(link_one_text + " + " + link_two_text);
-						//tmp_text.textInfo.linkInfo[first_link_index].
-					}
-				}
-				else
-				{
-					TextMeshProUGUI tmp_text_ugui_2 = hit.transform.GetComponentInChildren<TextMeshProUGUI>();
-					if (tmp_text_ugui_2 != null)
-					{
-						Camera cam = null;
-						if (!tmp_text_ugui_2.canvas.renderMode.Equals(RenderMode.ScreenSpaceOverlay))
-						{
-							if (tmp_text_ugui_2.canvas.renderMode.Equals(RenderMode.ScreenSpaceCamera))
-							{
-								cam = tmp_text_ugui_2.canvas.worldCamera;
-							}
-							else
-							{
-								cam = Camera.main;
-							}
-						}
-
-						second_link_index = TMP_TextUtilities.FindIntersectingLink(tmp_text_ugui_2, Input.mousePosition, cam);
+						second_link_index = TMP_TextUtilities.FindIntersectingLink(tmp_text_2, Input.mousePosition, Camera.main);
 						if (second_link_index != -1)
 						{
 							//2 - Выполнять необходимые действия - Сначала анализ ссылок, а затем Создание заметок и т.д.
 
-							string link_one_text = tmp_text_ugui_2.textInfo.linkInfo[first_link_index].GetLinkText();
-							string link_two_text = tmp_text_ugui_2.textInfo.linkInfo[second_link_index].GetLinkText();
+							string link_one_text = tmp_text.textInfo.linkInfo[first_link_index].GetLinkText();
+							string link_two_text = tmp_text_2.textInfo.linkInfo[second_link_index].GetLinkText();
 
 							Debug.Log(link_one_text + " + " + link_two_text);
+							//tmp_text.textInfo.linkInfo[first_link_index].
+						}
+					}
+					else
+					{
+						TextMeshProUGUI tmp_text_ugui_2 = hit.transform.GetComponentInChildren<TextMeshProUGUI>();
+						if (tmp_text_ugui_2 != null)
+						{
+							Camera cam = null;
+							if (!tmp_text_ugui_2.canvas.renderMode.Equals(RenderMode.ScreenSpaceOverlay))
+							{
+								if (tmp_text_ugui_2.canvas.renderMode.Equals(RenderMode.ScreenSpaceCamera))
+								{
+									cam = tmp_text_ugui_2.canvas.worldCamera;
+								}
+								else
+								{
+									cam = Camera.main;
+								}
+							}
 
-							timeMan.AddMinutesToTime(TimeManager.c_linksMinutesPlus); // Количество минут, которые тратятся на соединение точек интереса задаётся в TimeManager
+							second_link_index = TMP_TextUtilities.FindIntersectingLink(tmp_text_ugui_2, Input.mousePosition, cam);
 
-							LinkProcess.CheckLinks(
-								tmp_text_ugui_2.textInfo.linkInfo[first_link_index].GetLinkID(),
-								tmp_text_ugui_2.textInfo.linkInfo[first_link_index].GetLinkText(),
-								tmp_text_ugui_2.textInfo.linkInfo[second_link_index].GetLinkID(),
-								tmp_text_ugui_2.textInfo.linkInfo[second_link_index].GetLinkText());
+							//Debug.Log(tmp_text_ugui_2.canvas.transform.parent.name);
+							//Debug.Log(second_link_index);
+
+							//Debug.Log(tmp_text_ugui_2.canvas.transform.parent.name);
+							//Debug.Log(second_link_index);
+
+							if (second_link_index != -1)
+							{
+								//2 - Выполнять необходимые действия - Сначала анализ ссылок, а затем Создание заметок и т.д.
+
+								string link_one_text = tmp_text_ugui.textInfo.linkInfo[first_link_index].GetLinkText();
+								string link_two_text = tmp_text_ugui_2.textInfo.linkInfo[second_link_index].GetLinkText();
+
+								Debug.Log(link_one_text + " + " + link_two_text);
+
+								timeMan.AddMinutesToTime(TimeManager.c_linksMinutesPlus); // Количество минут, которые тратятся на соединение точек интереса задаётся в TimeManager
+
+								LinkProcess.CheckLinks(
+									tmp_text_ugui.textInfo.linkInfo[first_link_index].GetLinkID(),
+									tmp_text_ugui.textInfo.linkInfo[first_link_index].GetLinkText(),
+									tmp_text_ugui_2.textInfo.linkInfo[second_link_index].GetLinkID(),
+									tmp_text_ugui_2.textInfo.linkInfo[second_link_index].GetLinkText());
+							}
 						}
 					}
 				}
-			}
+		}
 	}
 }
 
