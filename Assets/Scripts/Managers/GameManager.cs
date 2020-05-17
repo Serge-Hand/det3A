@@ -16,6 +16,13 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private GameObject documentPrefab;
 
+    [SerializeField] GameObject hintPanel;
+    Animator hintAnim;
+    AudioManager audMan;
+
+    GameObject mainCam;
+    GameObject choiceCam;
+
     private void Start()
     {
         /*notes.Add(new Note(0, "Test note 0 (Первый, Алиби +)", new List<NoteParameters> { new NoteParameters(1, 0, 0) }));
@@ -38,6 +45,14 @@ public class GameManager : MonoBehaviour
         {
             timeMan.StartTimer(8, 18);
         }
+
+        hintAnim = hintPanel.GetComponent<Animator>();
+        audMan = GameObject.Find("AudioManager").GetComponent<AudioManager>();
+
+        mainCam = GameObject.Find("Main Camera");
+        choiceCam = GameObject.Find("Choice Camera");
+        mainCam.SetActive(true);
+        choiceCam.SetActive(false);
     }
 
     public void CreateNote(int ID)
@@ -50,12 +65,14 @@ public class GameManager : MonoBehaviour
                 FindObjectOfType<BoardManager>().CreateNote(notes[i]);
                 notes.RemoveAt(i);
                 Debug.Log("Note created!");
+                showNewNoteHint();
                 isCreated = true;
             }
         }
         if (!isCreated)
         {
             FindObjectOfType<AudioManager>().Play("hintSound");
+            showExistingNoteHint();
             Debug.Log("Note already exists!");
         }
         else
@@ -159,6 +176,34 @@ public class GameManager : MonoBehaviour
         public List<string> GetAll()
         {
             return documents;
+        }
+    }
+
+    void showNewNoteHint()
+    {
+        hintPanel.GetComponentInChildren<TextMeshProUGUI>().text = "Новая записка!";
+        hintAnim.Play("HintPanel");
+        //audMan.Play("writingSound");
+    }
+
+    void showExistingNoteHint()
+    {
+        hintPanel.GetComponentInChildren<TextMeshProUGUI>().text = "Такая записка уже существует";
+        hintAnim.Play("HintPanel");
+        audMan.Play("putNoteSound");
+    }
+
+    public void CameraSwitch()
+    {
+        if(mainCam.activeSelf)
+        {
+            mainCam.SetActive(false);
+            choiceCam.SetActive(true);
+        }
+        else
+        {
+            choiceCam.SetActive(false);
+            mainCam.SetActive(true);
         }
     }
 }

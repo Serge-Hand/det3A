@@ -128,6 +128,9 @@ public class TimeManager : MonoBehaviour
     void OnTimerStop()
     {
         timeIsTicking = false;
-        Debug.Log("Stop Timer");
+        //Debug.Log("Stop Timer");
+
+        GameObject.Find("GameManager").GetComponent<ChoiceScript>().Initialize();
+        GameObject.Find("GameManager").GetComponent<GameManager>().CameraSwitch();
     }
 }
