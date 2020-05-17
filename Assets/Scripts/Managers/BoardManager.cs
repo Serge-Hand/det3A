@@ -15,7 +15,7 @@ public class BoardManager : MonoBehaviour
 
     private void Start()
     {
-        CreateBoard(3);
+        CreateBoard(4);
         //CreateNote("Первый подозреваемый\nАлиби\n+", new List<NoteParameters> { new NoteParameters(1, 0, 0) });
         //CreateNote("Первый подозреваемый\nМотив\n-", new List<NoteParameters> { new NoteParameters(-1, (NoteParameters.Row)1, 0) });
         //CreateNote("Третий подозреваемый\nАлиби\n+", new List<NoteParameters> { new NoteParameters(1, 0, 2) });
@@ -82,9 +82,9 @@ public class BoardManager : MonoBehaviour
                 }
                 print("Matched! Value = " + p.GetValue());
                 if (p.GetValue() == 1)
-                    curBar.transform.GetChild(0).GetComponent<Image>().fillAmount += 0.1f;
+                    curBar.transform.GetChild(0).GetComponent<Image>().fillAmount += 0.125f;
                 if (p.GetValue() == -1)
-                    curBar.transform.GetChild(0).GetComponent<Image>().fillAmount -= 0.1f;
+                    curBar.transform.GetChild(0).GetComponent<Image>().fillAmount -= 0.125f;
             }
         }
     }
@@ -115,9 +115,9 @@ public class BoardManager : MonoBehaviour
                 }
                 print("Detached! Value = " + p.GetValue());
                 if (p.GetValue() == 1)
-                    curBar.transform.GetChild(0).GetComponent<Image>().fillAmount -= 0.1f;
+                    curBar.transform.GetChild(0).GetComponent<Image>().fillAmount -= 0.125f;
                 if (p.GetValue() == -1)
-                    curBar.transform.GetChild(0).GetComponent<Image>().fillAmount += 0.1f;
+                    curBar.transform.GetChild(0).GetComponent<Image>().fillAmount += 0.125f;
             }
         }
     }
