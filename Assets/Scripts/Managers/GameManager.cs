@@ -103,8 +103,8 @@ public class GameManager : MonoBehaviour
 
     public void Load(int caseIndex)
     {
-        string jsonNotes = File.ReadAllText(Application.dataPath + SAVE_FOLDER_NOTES + "notes" + caseIndex + ".txt");
-        string jsonDocs = File.ReadAllText(Application.dataPath + SAVE_FOLDER_DOCUMENTS + "documents" + caseIndex + ".txt");
+        string jsonNotes = File.ReadAllText(System.IO.Directory.GetCurrentDirectory() + SAVE_FOLDER_NOTES + "notes" + caseIndex + ".txt");
+        string jsonDocs = File.ReadAllText(System.IO.Directory.GetCurrentDirectory() + SAVE_FOLDER_DOCUMENTS + "documents" + caseIndex + ".txt");
 
         NotesListHelper helperNotes = JsonUtility.FromJson<NotesListHelper>(jsonNotes);
         DocumentsListHelper helperDocs = JsonUtility.FromJson<DocumentsListHelper>(jsonDocs);
