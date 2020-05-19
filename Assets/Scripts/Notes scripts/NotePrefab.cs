@@ -7,7 +7,7 @@ public class NotePrefab : MonoBehaviour
     private int ID;
     private string text;
     private List<NoteParameters> parameters;
-    public int layer;
+    private int layer;
 
     public void SetText(string text)
     {

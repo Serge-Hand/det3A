@@ -13,7 +13,7 @@ public class BoardManager : MonoBehaviour
     public GameObject progressBarPrefab;
     public GameObject canvas;
 
-    public int noteLayers;
+    private int noteLayers;
 
     private void Start()
     {
@@ -128,7 +128,7 @@ public class BoardManager : MonoBehaviour
 
     public void CreateNote(Note note)
     {
-        GameObject newNote = Instantiate(notePrefab, new Vector3(15.854f, Random.Range(19.6f, 20f), Random.Range(-3.5f, -3f)), notePrefab.transform.rotation);
+        GameObject newNote = Instantiate(notePrefab, new Vector3(15.854f, Random.Range(10.6f, 20f), Random.Range(-3.5f, 0f)), notePrefab.transform.rotation);
         newNote.transform.rotation = Quaternion.Euler(0, 360, 90);
         newNote.transform.GetChild(0).GetComponent<TextMeshPro>().text = note.GetText();
         newNote.GetComponent<NotePrefab>().SetText(note.GetText());
