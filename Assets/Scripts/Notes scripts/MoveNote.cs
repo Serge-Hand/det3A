@@ -57,6 +57,7 @@ public class MoveNote : MonoBehaviour
 
     private void OnMouseDown()
     {
+        FindObjectOfType<BoardManager>().ChangeLayers(GetComponent<NotePrefab>().GetLayer());
         transform.position = gameObject.transform.position - new Vector3(0.1f, 0, 0);
 
         mZCoord = Camera.main.WorldToScreenPoint(gameObject.transform.position).z;

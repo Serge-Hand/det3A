@@ -13,6 +13,8 @@ public class BoardManager : MonoBehaviour
     public GameObject progressBarPrefab;
     public GameObject canvas;
 
+    public int noteLayers;
+
     private void Start()
     {
         CreateBoard(4);
@@ -29,6 +31,8 @@ public class BoardManager : MonoBehaviour
 
     public void CreateBoard(int suspectsNumber)
     {
+        noteLayers = 1;
+
         float nextPositionY = transform.position.y + 1.95f;//2.3f;
         float gapY = 0.2f;
         for (int i = 0; i < 4; i++)
@@ -124,11 +128,33 @@ public class BoardManager : MonoBehaviour
 
     public void CreateNote(Note note)
     {
-        GameObject newNote = Instantiate(notePrefab, new Vector3(15.85f, Random.Range(10.6f, 20f), Random.Range(-3.5f, 0f)), notePrefab.transform.rotation);
+        GameObject newNote = Instantiate(notePrefab, new Vector3(15.854f, Random.Range(19.6f, 20f), Random.Range(-3.5f, -3f)), notePrefab.transform.rotation);
         newNote.transform.rotation = Quaternion.Euler(0, 360, 90);
         newNote.transform.GetChild(0).GetComponent<TextMeshPro>().text = note.GetText();
         newNote.GetComponent<NotePrefab>().SetText(note.GetText());
         newNote.GetComponent<NotePrefab>().SetParameters(note.GetParameters());
+        newNote.GetComponent<NotePrefab>().SetLayer(noteLayers);
+        newNote.transform.position -= new Vector3(noteLayers * 0.0028f, 0, 0);
         notes.Add(newNote);
+        noteLayers++;
+    }
+
+    public void ChangeLayers(int layer)
+    {
+        NotePrefab[] tmp = FindObjectsOfType<NotePrefab>();
+        foreach (NotePrefab n in tmp)
+        {
+            int l = n.GetLayer();
+            if (l == layer && layer != (noteLayers - 1))
+            {
+                n.SetLayer(noteLayers - 1);
+                n.gameObject.transform.position = new Vector3(15.854f - (0.0028f * (noteLayers - 1f)), n.gameObject.transform.position.y, n.gameObject.transform.position.z);
+            }
+            if (l > layer)
+            {
+                n.SetLayer(--l);
+                n.gameObject.transform.position = new Vector3(15.854f - 0.0028f * l, n.gameObject.transform.position.y, n.gameObject.transform.position.z);
+            }
+        }
     }
 }

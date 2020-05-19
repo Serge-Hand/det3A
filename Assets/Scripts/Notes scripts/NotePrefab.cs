@@ -7,6 +7,7 @@ public class NotePrefab : MonoBehaviour
     private int ID;
     private string text;
     private List<NoteParameters> parameters;
+    public int layer;
 
     public void SetText(string text)
     {
@@ -23,6 +24,11 @@ public class NotePrefab : MonoBehaviour
         this.parameters = parameters;
     }
 
+    public void SetLayer(int layer)
+    {
+        this.layer = layer;
+    }
+
     public int GetID()
     {
         return ID;
@@ -36,5 +42,10 @@ public class NotePrefab : MonoBehaviour
     public List<NoteParameters> GetParameters()
     {
         return parameters;
+    }
+
+    public int GetLayer()
+    {
+        return layer;
     }
 }
