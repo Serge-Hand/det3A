@@ -1862,7 +1862,7 @@ GameObject:
   - component: {fileID: 200038246}
   - component: {fileID: 200038245}
   m_Layer: 5
-  m_Name: TMP SubMeshUI [18294 SDF RUS Material + LiberationSans SDF Atlas]
+  m_Name: TMP SubMeshUI [Cursive 4 SDF Material + LiberationSans SDF Atlas]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2454,8 +2454,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u0413\u0435\u043D\u0440\u0438 \u041D\u0430\u0439\u0442\u0438\u043D\u0433\u0435\u0439\u043B"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 16a0f89d6a68b9e4e8beeffb2c253760, type: 2}
-  m_sharedMaterial: {fileID: 6761342784477945109, guid: 16a0f89d6a68b9e4e8beeffb2c253760,
+  m_fontAsset: {fileID: 11400000, guid: 052eac99fc411414e963f839393d8a4d, type: 2}
+  m_sharedMaterial: {fileID: 3599295061475261341, guid: 052eac99fc411414e963f839393d8a4d,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -2481,13 +2481,13 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 1.1
-  m_fontSizeBase: 1.1
+  m_fontSize: 1
+  m_fontSizeBase: 1
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_textAlignment: 514
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -4851,6 +4851,7 @@ GameObject:
   - component: {fileID: 690023806}
   - component: {fileID: 690023807}
   - component: {fileID: 690023808}
+  - component: {fileID: 690023809}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -4903,6 +4904,18 @@ MonoBehaviour:
   photo2: {fileID: 1969309529}
   photo3: {fileID: 1107246826}
   photo4: {fileID: 723228454}
+--- !u!114 &690023809
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 690023805}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb5c899763bbf9d4dabe45ad0b2bbfcf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &690849215
 GameObject:
   m_ObjectHideFlags: 0
@@ -18973,7 +18986,7 @@ GameObject:
   - component: {fileID: 1925078518}
   - component: {fileID: 1925078517}
   m_Layer: 5
-  m_Name: TMP SubMeshUI [18294 SDF RUS Material + LiberationSans SDF Atlas]
+  m_Name: TMP SubMeshUI [Cursive 4 SDF Material + LiberationSans SDF Atlas]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19337,6 +19350,24 @@ MonoBehaviour:
   - name: hintSound
     clip: {fileID: 8300000, guid: 8e60ed4755933a54481163e334790143, type: 3}
     volume: 0.3
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: errorSound
+    clip: {fileID: 8300000, guid: 61203c4bfeb34574fab7fc07a97c78c1, type: 3}
+    volume: 0.6
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: existSound
+    clip: {fileID: 8300000, guid: 17912c79b445c6743a3b25e4cd890ff8, type: 3}
+    volume: 0.6
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: loupeSound
+    clip: {fileID: 8300000, guid: 6cc86071dd7cb734eae4a2b45e35713d, type: 3}
+    volume: 0.7
     pitch: 1
     loop: 0
     source: {fileID: 0}
@@ -20302,10 +20333,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u0414\u0432\u043E\u0440\u0435\u0446\u043A\u0438\u0439 \u0414\u0436\u0435\u0439\u043C\u0441"
+  m_text: "\u0414\u0432\u043E\u0440\u0435\u0446\u043A\u0438\u0439"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 16a0f89d6a68b9e4e8beeffb2c253760, type: 2}
-  m_sharedMaterial: {fileID: 6761342784477945109, guid: 16a0f89d6a68b9e4e8beeffb2c253760,
+  m_fontAsset: {fileID: 11400000, guid: 052eac99fc411414e963f839393d8a4d, type: 2}
+  m_sharedMaterial: {fileID: 3599295061475261341, guid: 052eac99fc411414e963f839393d8a4d,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -20331,15 +20362,15 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 1.1
-  m_fontSizeBase: 1.1
+  m_fontSize: 1.3
+  m_fontSizeBase: 1.3
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_textAlignment: 514
-  m_characterSpacing: 0
+  m_characterSpacing: -4.39
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -20372,14 +20403,14 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 2062247317}
-    characterCount: 16
+    characterCount: 9
     spriteCount: 0
-    spaceCount: 1
-    wordCount: 2
+    spaceCount: 0
+    wordCount: 1
     linkCount: 0
     lineCount: 1
     pageCount: 1
-    materialCount: 2
+    materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}

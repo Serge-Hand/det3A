@@ -23,6 +23,8 @@ public class GameManager : MonoBehaviour
     GameObject mainCam;
     GameObject choiceCam;
 
+    TimeManager timeMan;
+
     private void Start()
     {
         /*notes.Add(new Note(0, "Test note 0 (Первый, Алиби +)", new List<NoteParameters> { new NoteParameters(1, 0, 0) }));
@@ -36,7 +38,7 @@ public class GameManager : MonoBehaviour
         Load(1);
         CreateDocuments();
 
-        TimeManager timeMan = GameObject.Find("TimeManager").GetComponent<TimeManager>();
+        timeMan = GameObject.Find("TimeManager").GetComponent<TimeManager>();
         if (timeMan == null)
         {
             Debug.LogWarning("TimeManager don't found");
@@ -71,13 +73,14 @@ public class GameManager : MonoBehaviour
         }
         if (!isCreated)
         {
-            FindObjectOfType<AudioManager>().Play("hintSound");
+            FindObjectOfType<AudioManager>().Play("existSound");
             showExistingNoteHint();
             Debug.Log("Note already exists!");
         }
         else
         {
             FindObjectOfType<AudioManager>().Play("writingSound");
+            timeMan.AddMinutesToTime(TimeManager.c_linksMinutesPlus);
         }
     }
 
@@ -181,14 +184,14 @@ public class GameManager : MonoBehaviour
 
     void showNewNoteHint()
     {
-        hintPanel.GetComponentInChildren<TextMeshProUGUI>().text = "Новая записка!";
+        hintPanel.GetComponentInChildren<TextMeshProUGUI>().text = "Новая заметка!";
         hintAnim.Play("HintPanel");
         //audMan.Play("writingSound");
     }
 
     void showExistingNoteHint()
     {
-        hintPanel.GetComponentInChildren<TextMeshProUGUI>().text = "Такая записка уже существует";
+        hintPanel.GetComponentInChildren<TextMeshProUGUI>().text = "Такая заметка уже существует";
         hintAnim.Play("HintPanel");
         audMan.Play("putNoteSound");
     }

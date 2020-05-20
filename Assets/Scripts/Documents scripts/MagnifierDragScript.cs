@@ -56,6 +56,7 @@ public class MagnifierDragScript : MonoBehaviour
 
 				SearchObject(hit.collider.gameObject);
 
+				FindObjectOfType<AudioManager>().Play("existSound");
 				timeMan.AddMinutesToTime(TimeManager.c_magnifierMinutesPlus); // Количество минут, которые тратятся на исследование лупой задаётся в TimeManager
 			}
 	}

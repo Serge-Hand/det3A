@@ -174,9 +174,9 @@ public class InterestPointsDragScript : MonoBehaviour
 
 								Debug.Log(link_one_text + " + " + link_two_text);
 
-								timeMan.AddMinutesToTime(TimeManager.c_linksMinutesPlus); // Количество минут, которые тратятся на соединение точек интереса задаётся в TimeManager
+								//timeMan.AddMinutesToTime(TimeManager.c_linksMinutesPlus); // Количество минут, которые тратятся на соединение точек интереса задаётся в TimeManager
 
-								LinkProcess.CheckLinks(
+								FindObjectOfType<LinkProcess>().CheckLinks(
 									tmp_text_ugui.textInfo.linkInfo[first_link_index].GetLinkID(),
 									tmp_text_ugui.textInfo.linkInfo[first_link_index].GetLinkText(),
 									tmp_text_ugui_2.textInfo.linkInfo[second_link_index].GetLinkID(),

@@ -140,7 +140,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ac6eb3ee8163c04c83e2e0657518a23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  layer: 0
 --- !u!65 &2302496168485058217
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -167,7 +166,7 @@ GameObject:
   - component: {fileID: 5003031175007465506}
   - component: {fileID: 2786565498366510680}
   m_Layer: 0
-  m_Name: TMP SubMesh [LiberationSans SDF Material + LiberationSans SDF Atlas]
+  m_Name: TMP SubMesh [Cursive 4 SDF Material + LiberationSans SDF Atlas]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -246,7 +245,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07994bfe8b0e4adb97d706de5dea48d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_spriteAsset: {fileID: 0}
   m_material: {fileID: 0}
   m_sharedMaterial: {fileID: 0}
@@ -313,7 +312,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 6761342784477945109, guid: 16a0f89d6a68b9e4e8beeffb2c253760, type: 2}
+  - {fileID: 3599295061475261341, guid: 052eac99fc411414e963f839393d8a4d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -369,10 +368,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u0442\u0442"
+  m_text: "\u041F\u0440\u043E\u0432\u0435\u0440\u043A\u0430 \u0437\u0430\u043C\u0435\u0442\u043A\u0438"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 16a0f89d6a68b9e4e8beeffb2c253760, type: 2}
-  m_sharedMaterial: {fileID: 6761342784477945109, guid: 16a0f89d6a68b9e4e8beeffb2c253760,
+  m_fontAsset: {fileID: 11400000, guid: 052eac99fc411414e963f839393d8a4d, type: 2}
+  m_sharedMaterial: {fileID: 3599295061475261341, guid: 052eac99fc411414e963f839393d8a4d,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -398,16 +397,16 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 15
+  m_fontSize: 5.1
   m_fontSizeBase: 2
   m_fontWeight: 400
   m_enableAutoSizing: 1
-  m_fontSizeMin: 1
-  m_fontSizeMax: 72
+  m_fontSizeMin: 2
+  m_fontSizeMax: 8
   m_fontStyle: 0
   m_textAlignment: 514
-  m_characterSpacing: 0
-  m_wordSpacing: 0
+  m_characterSpacing: -4.39
+  m_wordSpacing: -6.81
   m_lineSpacing: 0
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
@@ -439,14 +438,14 @@ MonoBehaviour:
   m_margin: {x: -0.031626362, y: -0.0010795593, z: -0.010240672, w: -0.009698391}
   m_textInfo:
     textComponent: {fileID: 1131350812664843235}
-    characterCount: 2
+    characterCount: 16
     spriteCount: 0
-    spaceCount: 0
-    wordCount: 1
+    spaceCount: 1
+    wordCount: 2
     linkCount: 0
-    lineCount: 1
+    lineCount: 2
     pageCount: 1
-    materialCount: 1
+    materialCount: 2
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
