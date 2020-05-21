@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] GameObject hintPanel;
     Animator hintAnim;
-    AudioManager audMan;
+    //AudioManager audMan;
 
     GameObject mainCam;
     GameObject choiceCam;
@@ -45,11 +45,11 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            timeMan.StartTimer(8, 18);
+            timeMan.StartTimer(17, 18);
         }
 
         hintAnim = hintPanel.GetComponent<Animator>();
-        audMan = GameObject.Find("AudioManager").GetComponent<AudioManager>();
+        //audMan = GameObject.Find("AudioManager").GetComponent<AudioManager>();
 
         mainCam = GameObject.Find("Main Camera");
         choiceCam = GameObject.Find("Choice Camera");
@@ -193,7 +193,7 @@ public class GameManager : MonoBehaviour
     {
         hintPanel.GetComponentInChildren<TextMeshProUGUI>().text = "Такая заметка уже существует";
         hintAnim.Play("HintPanel");
-        audMan.Play("putNoteSound");
+        //audMan.Play("putNoteSound");
     }
 
     public void CameraSwitch()
