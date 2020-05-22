@@ -18,6 +18,8 @@ public class ChoiceScript : MonoBehaviour
     const string p4 = "Магдала Грейсон. Из-за несправедливого обвинения и участи пожизненного заключения, Магдала кончает с собой.";
 
     GameObject blscr;
+    [SerializeField]
+    GameObject dart;
 
     void Start()
     {
@@ -48,6 +50,8 @@ public class ChoiceScript : MonoBehaviour
         col = photo5.AddComponent<BoxCollider>();
         //col.size = new Vector3(col.size.x, 1, col.size.z);
         photo5.AddComponent<OnPhotoClickDetect>().SetHandler(this, 4);
+
+        dart.SetActive(true);
     }
 
     public void OnPhotoClick(int num)

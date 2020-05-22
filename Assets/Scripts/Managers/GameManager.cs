@@ -45,7 +45,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            timeMan.StartTimer(17, 18);
+            timeMan.StartTimer(8, 18);
         }
 
         hintAnim = hintPanel.GetComponent<Animator>();
