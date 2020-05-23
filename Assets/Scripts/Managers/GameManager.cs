@@ -25,6 +25,8 @@ public class GameManager : MonoBehaviour
 
     TimeManager timeMan;
 
+    public int currentCaseNum;
+
     private void Start()
     {
         /*notes.Add(new Note(0, "Test note 0 (Первый, Алиби +)", new List<NoteParameters> { new NoteParameters(1, 0, 0) }));
@@ -35,8 +37,13 @@ public class GameManager : MonoBehaviour
         documents.Add("Проверка 2");*/
 
         //Save();
-        Load(1);
-        CreateDocuments();
+
+        //При загрузке уровня:
+        currentCaseNum = 1;//определить номер дела
+        Load(currentCaseNum);//загрузить файлы этого дела
+        CreateDocuments();//сгенерировать документы
+        //создать доску (обязательно после определения номера дела, потому что оно берёт номер дела внутри своих функций)
+        FindObjectOfType<BoardManager>().CreateBoard(4);
 
         timeMan = GameObject.Find("TimeManager").GetComponent<TimeManager>();
         if (timeMan == null)

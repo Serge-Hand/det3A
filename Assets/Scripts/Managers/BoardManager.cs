@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,6 +10,7 @@ public class BoardManager : MonoBehaviour
     private List<GameObject> notes = new List<GameObject>();
     public GameObject notePrefab;
     public GameObject notePlacePrefab;
+    public GameObject photoPrefab;
 
     public GameObject progressBarPrefab;
     public GameObject canvas;
@@ -17,16 +19,10 @@ public class BoardManager : MonoBehaviour
 
     private void Start()
     {
-        CreateBoard(4);
+        //CreateBoard(4);
         //CreateNote("Первый подозреваемый\nАлиби\n+", new List<NoteParameters> { new NoteParameters(1, 0, 0) });
         //CreateNote("Первый подозреваемый\nМотив\n-", new List<NoteParameters> { new NoteParameters(-1, (NoteParameters.Row)1, 0) });
         //CreateNote("Третий подозреваемый\nАлиби\n+", new List<NoteParameters> { new NoteParameters(1, 0, 2) });
-
-        ProgressBar[] bars = FindObjectsOfType<ProgressBar>();
-        foreach (ProgressBar bar in bars)
-        {
-            bar.transform.GetChild(0).GetComponent<Image>().fillAmount = 0.5f;
-        }
     }
 
     public void CreateBoard(int suspectsNumber)
@@ -50,6 +46,7 @@ public class BoardManager : MonoBehaviour
             }
             nextPositionY -= (notePlacePrefab.GetComponent<Renderer>().bounds.size.y + gapY);
         }
+
         float nextPosBar = 14.9f;
         for (int i = 0; i < suspectsNumber; i++)
         {
@@ -57,6 +54,33 @@ public class BoardManager : MonoBehaviour
             createImage.transform.SetParent(canvas.transform, false);
             createImage.GetComponent<ProgressBar>().SetColumn(i);
             nextPosBar += (progressBarPrefab.GetComponent<RectTransform>().sizeDelta.x + 2.5f);
+        }
+        ProgressBar[] bars = FindObjectsOfType<ProgressBar>();
+        foreach (ProgressBar bar in bars)
+        {
+            bar.transform.GetChild(0).GetComponent<Image>().fillAmount = 0.5f;
+        }
+
+        CreatePhotos(suspectsNumber);
+    }
+
+    private void CreatePhotos(int num)
+    {
+        string names = File.ReadAllText(System.IO.Directory.GetCurrentDirectory() + "/Files/Names/" + "names" + FindObjectOfType<GameManager>().currentCaseNum + ".txt");
+        string[] tmp = names.Split('/');
+
+        float nextPosPhoto = 11.8f;
+        for (int i = 0; i < num; i++)
+        {
+            print("Textures/Sprites/Case" + FindObjectOfType<GameManager>().currentCaseNum + "/photo" + i);
+            Sprite sprite = Resources.Load<Sprite>("Sprites/Case" + FindObjectOfType<GameManager>().currentCaseNum + "/photo" + i);
+            var newPhoto = Instantiate(photoPrefab, new Vector3(15.9f, 19.75f, nextPosPhoto), progressBarPrefab.transform.rotation) as GameObject;
+
+            newPhoto.transform.rotation = Quaternion.Euler(0, 360, 90);
+            newPhoto.transform.GetChild(0).GetChild(0).GetComponent<TextMeshProUGUI>().text = tmp[i];
+            newPhoto.transform.GetChild(0).GetChild(1).GetComponent<Image>().overrideSprite = sprite;
+
+            nextPosPhoto -= (progressBarPrefab.GetComponent<RectTransform>().sizeDelta.x - 13.8f);
         }
     }
 

@@ -11,6 +11,7 @@ TagManager:
   - POICarrier
   - Searchable
   - text
+  - photo
   layers:
   - Default
   - TransparentFX
