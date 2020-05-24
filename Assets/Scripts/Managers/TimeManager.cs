@@ -130,7 +130,9 @@ public class TimeManager : MonoBehaviour
         timeIsTicking = false;
         //Debug.Log("Stop Timer");
 
-        GameObject.Find("GameManager").GetComponent<ChoiceScript>().Initialize();
-        GameObject.Find("GameManager").GetComponent<GameManager>().CameraSwitch();
+        //GameObject.Find("GameManager").GetComponent<ChoiceScript>().Initialize();
+        //GameObject.Find("GameManager").GetComponent<GameManager>().CameraChoiceSwitch();
+
+        StartCoroutine( GameObject.Find("GameManager").GetComponent<GameManager>().OnEndOfDay() );
     }
 }

@@ -13,14 +13,11 @@ public class GameManager : MonoBehaviour
     private List<Note> notes = new List<Note>();
     private List<string> documents = new List<string>();
 
-    [SerializeField]
-    private GameObject documentPrefab;
+    [SerializeField] private GameObject documentPrefab;
 
     [SerializeField] GameObject hintPanel;
     Animator hintAnim;
-    //AudioManager audMan;
-    [SerializeField]
-    private GameObject tutorialManager;
+    [SerializeField] private GameObject tutorialManager;
 
     GameObject mainCam;
     GameObject choiceCam;
@@ -28,6 +25,9 @@ public class GameManager : MonoBehaviour
     TimeManager timeMan;
 
     public int currentCaseNum;
+
+    GameObject g_newDayScreen;
+    int day = 1;
 
     private void Start()
     {
@@ -65,6 +65,9 @@ public class GameManager : MonoBehaviour
         choiceCam = GameObject.Find("Choice Camera");
         mainCam.SetActive(true);
         choiceCam.SetActive(false);
+
+        g_newDayScreen = GameObject.Find("NewDayScreen");
+        g_newDayScreen.SetActive(false);
 
         TurnOnTutorial();//включить туториал на первом уровне
     }
@@ -198,17 +201,15 @@ public class GameManager : MonoBehaviour
     {
         hintPanel.GetComponentInChildren<TextMeshProUGUI>().text = "Новая заметка!";
         hintAnim.Play("HintPanel");
-        //audMan.Play("writingSound");
     }
 
     void showExistingNoteHint()
     {
         hintPanel.GetComponentInChildren<TextMeshProUGUI>().text = "Такая заметка уже существует";
         hintAnim.Play("HintPanel");
-        //audMan.Play("putNoteSound");
     }
 
-    public void CameraSwitch()
+    public void CameraChoiceSwitch()
     {
         if(mainCam.activeSelf)
         {
@@ -225,5 +226,19 @@ public class GameManager : MonoBehaviour
     public void TurnOnTutorial()
     {
         tutorialManager.SetActive(true);
+    }
+
+    public IEnumerator OnEndOfDay()
+    {
+        TextMeshProUGUI c_text = g_newDayScreen.GetComponentInChildren<TextMeshProUGUI>();
+
+        g_newDayScreen.SetActive(true);
+        day++;
+        c_text.SetText("День " + day);
+
+        yield return new WaitForSeconds(3f);
+
+        timeMan.StartTimer(8, 18);
+        g_newDayScreen.SetActive(false);
     }
 }
