@@ -19,6 +19,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject hintPanel;
     Animator hintAnim;
     //AudioManager audMan;
+    [SerializeField]
+    private GameObject tutorialManager;
 
     GameObject mainCam;
     GameObject choiceCam;
@@ -44,6 +46,7 @@ public class GameManager : MonoBehaviour
         CreateDocuments();//сгенерировать документы
         //создать доску (обязательно после определения номера дела, потому что оно берёт номер дела внутри своих функций)
         FindObjectOfType<BoardManager>().CreateBoard(4);
+        //включить туториал на первом уровне (в самом низу старта)
 
         timeMan = GameObject.Find("TimeManager").GetComponent<TimeManager>();
         if (timeMan == null)
@@ -52,7 +55,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            timeMan.StartTimer(8, 18);
+            timeMan.StartTimer(15, 18);
         }
 
         hintAnim = hintPanel.GetComponent<Animator>();
@@ -62,6 +65,8 @@ public class GameManager : MonoBehaviour
         choiceCam = GameObject.Find("Choice Camera");
         mainCam.SetActive(true);
         choiceCam.SetActive(false);
+
+        TurnOnTutorial();//включить туториал на первом уровне
     }
 
     public void CreateNote(int ID)
@@ -215,5 +220,10 @@ public class GameManager : MonoBehaviour
             choiceCam.SetActive(false);
             mainCam.SetActive(true);
         }
+    }
+
+    public void TurnOnTutorial()
+    {
+        tutorialManager.SetActive(true);
     }
 }

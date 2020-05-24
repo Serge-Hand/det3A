@@ -29,7 +29,7 @@ public class ChoiceScript : MonoBehaviour
 
     public void Initialize()
     {
-        BoxCollider col;
+        /*BoxCollider col;
 
         col = photo1.AddComponent<BoxCollider>();
         //col.size = new Vector3(col.size.x, 1, col.size.z);
@@ -49,7 +49,16 @@ public class ChoiceScript : MonoBehaviour
 
         col = photo5.AddComponent<BoxCollider>();
         //col.size = new Vector3(col.size.x, 1, col.size.z);
-        photo5.AddComponent<OnPhotoClickDetect>().SetHandler(this, 4);
+        photo5.AddComponent<OnPhotoClickDetect>().SetHandler(this, 4);*/
+
+        GameObject[] photos = GameObject.FindGameObjectsWithTag("photo");
+        int i = 0;
+        foreach (GameObject p in photos)
+        {
+            p.AddComponent<BoxCollider>();
+            p.AddComponent<OnPhotoClickDetect>().SetHandler(this, i);
+            i++;
+        }
 
         dart.SetActive(true);
     }

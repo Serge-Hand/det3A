@@ -72,4 +72,9 @@ public class Zoom : MonoBehaviour
             ZoomOut();
         }
     }
+
+    public int GetCount()
+    {
+        return count;
+    }
 }
