@@ -141,8 +141,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u0414\u0432\u043E\u0440\u0435\u0446\u043A\u0438\u0439 \u0414\u0436\u0435\u0439\u043C\u0441"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 052eac99fc411414e963f839393d8a4d, type: 2}
-  m_sharedMaterial: {fileID: 3599295061475261341, guid: 052eac99fc411414e963f839393d8a4d,
+  m_fontAsset: {fileID: 11400000, guid: b542bc7088963144e9204a79c99ee943, type: 2}
+  m_sharedMaterial: {fileID: 5866670649240651565, guid: b542bc7088963144e9204a79c99ee943,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -168,8 +168,8 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 1.2
-  m_fontSizeBase: 1.2
+  m_fontSize: 1.4
+  m_fontSizeBase: 1.4
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -439,7 +439,7 @@ GameObject:
   - component: {fileID: 3894136049255759893}
   - component: {fileID: 3894136049255759894}
   m_Layer: 5
-  m_Name: TMP SubMeshUI [Cursive 4 SDF Material + LiberationSans SDF Atlas]
+  m_Name: TMP SubMeshUI [new Cursive SDF Material + LiberationSans SDF Atlas]
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
