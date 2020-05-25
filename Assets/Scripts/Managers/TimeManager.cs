@@ -16,6 +16,7 @@ public class TimeManager : MonoBehaviour
     /* API
      * void StartTimer(int startHour, int endHour) - запустить течение времени с остановкой в endHour
      * void AddMinutesToTime(int minutes) - работает только когда течение времени запущено
+     * void StopTimer() - остановить отсчёт времени без других действий
      * 
      * void OnTimerStop() - не вызывается, но сюда нужно вставить вызов того что нужно делать в конце дня
      */
@@ -27,7 +28,7 @@ public class TimeManager : MonoBehaviour
     void Awake()
     {
         time_text = text_object.GetComponent<TMP_Text>();
-        if(time_text == null)
+        if (time_text == null)
         {
             Debug.LogError("Set TimeTextObject for TimeManager");
             this.enabled = false;
@@ -48,23 +49,30 @@ public class TimeManager : MonoBehaviour
         }
     }*/
 
-    public void StartTimer(int startHour, int endHour)
+    public void StartTimer(int startHour, int startMinute, int endHour)
     {
-        if (startHour < 0 || startHour > 23 || endHour < 0 || endHour > 23)
+        if (startHour < 0 || startHour > 23 || endHour < 0 || endHour > 23) // Часы должны быть между 0 и 23
         {
             Debug.LogError("Wrong hour");
             return;
         }
-        if (endHour <= startHour)
+        if (startMinute < 0 || startMinute >= 60) // Минуты должны быть между 0 и 59
+        {
+            Debug.LogError("Wrong minute");
+            return;
+        }
+        if (endHour <= startHour) // Если стартовое время больше конечного, то это мгновенная остановка таймера
         {
             Debug.LogWarning("Instant end of timer");
             return;
         }
-        time_text.text = startHour + ":00";
+
         //startSecond = Time.time;
 
-        currTime = new DayTime(startHour, 0);
+        currTime = new DayTime(startHour, startMinute);
         endTime = new DayTime(endHour, 0);
+
+        SetTimerText(currTime);
 
         StartCoroutine(Timer());
     }
@@ -78,20 +86,20 @@ public class TimeManager : MonoBehaviour
             currTime.Minute++;
             SetTimerText(currTime);
 
-            //Debug.Log(currTime.Minute.ToString() + EndTimerCheck());
+            //Debug.Log(currTime.Minute.ToString() + EndTimerCheck() + timeIsTicking);
         }
-        OnTimerStop();
+        OnTimerEnd();
     }
 
     bool EndTimerCheck() //true - продолжать работу; false - остановить
     {
-        if(currTime.Hour > endTime.Hour)
+        if (currTime.Hour > endTime.Hour)
         {
             return false;
         }
-        if(currTime.Hour == endTime.Hour)
+        if (currTime.Hour == endTime.Hour)
         {
-            if(currTime.Minute >= endTime.Minute)
+            if (currTime.Minute >= endTime.Minute)
             {
                 return false;
             }
@@ -103,7 +111,7 @@ public class TimeManager : MonoBehaviour
     {
         string minute = time.Minute.ToString();
 
-        if(time.Minute < 10)
+        if (time.Minute < 10)
         {
             minute = minute.Insert(0, "0");
         }
@@ -116,23 +124,31 @@ public class TimeManager : MonoBehaviour
         {
             currTime.Minute += minutes;
             SetTimerText(currTime);
-            /*
+
             if (!EndTimerCheck())
             {
                 StopCoroutine(Timer());
-                OnTimerStop();
-            }*/
+                OnTimerEnd();
+            }
         }
     }
 
-    void OnTimerStop()
+    public void StopTimer()
     {
-        timeIsTicking = false;
-        //Debug.Log("Stop Timer");
+        if (timeIsTicking == true)
+        {
+            timeIsTicking = false;
+            //StopCoroutine("Timer"); //Не работает, хотя в скрипте выше работает
+            StopAllCoroutines();
+        }
+    }
 
-        //GameObject.Find("GameManager").GetComponent<ChoiceScript>().Initialize();
-        //GameObject.Find("GameManager").GetComponent<GameManager>().CameraChoiceSwitch();
-
-        StartCoroutine( GameObject.Find("GameManager").GetComponent<GameManager>().OnEndOfDay() );
+    void OnTimerEnd()
+    {
+        if (timeIsTicking == true)
+        {
+            timeIsTicking = false;
+            StartCoroutine(GameObject.Find("GameManager").GetComponent<GameManager>().OnEndOfDay());
+        }
     }
 }

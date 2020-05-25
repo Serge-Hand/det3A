@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private GameObject documentPrefab;
 
-    [SerializeField] GameObject hintPanel;
+    [SerializeField] GameObject hintPanel = null;
     Animator hintAnim;
     [SerializeField] private GameObject tutorialManager;
 
@@ -55,7 +55,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            timeMan.StartTimer(15, 18);
+            timeMan.StartTimer(15, 30, 18);
         }
 
         hintAnim = hintPanel.GetComponent<Animator>();
@@ -238,7 +238,18 @@ public class GameManager : MonoBehaviour
 
         yield return new WaitForSeconds(3f);
 
-        timeMan.StartTimer(8, 18);
+        timeMan.StartTimer(8, 0, 18);
         g_newDayScreen.SetActive(false);
+    }
+
+    public void OnSuspectedChoice() // При выборе подозреваемого сделать...:
+    {
+        GetComponent<ChoiceScript>().Initialize();
+        CameraChoiceSwitch();
+
+        //GameObject.Find("GameManager").GetComponent<ChoiceScript>().Initialize();
+        //GameObject.Find("GameManager").GetComponent<GameManager>().CameraChoiceSwitch();
+
+        timeMan.StopTimer();
     }
 }
