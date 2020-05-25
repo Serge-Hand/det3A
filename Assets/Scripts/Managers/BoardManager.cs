@@ -25,10 +25,11 @@ public class BoardManager : MonoBehaviour
         //CreateNote("Третий подозреваемый\nАлиби\n+", new List<NoteParameters> { new NoteParameters(1, 0, 2) });
     }
 
-    public void CreateBoard(int suspectsNumber)
+    public void CreateBoard()
     {
         noteLayers = 1;
 
+        int suspectsNumber = CreatePhotos();
         float nextPositionY = transform.position.y + 1.95f;//2.3f;
         float gapY = 0.2f;
         for (int i = 0; i < 4; i++)
@@ -60,17 +61,15 @@ public class BoardManager : MonoBehaviour
         {
             bar.transform.GetChild(0).GetComponent<Image>().fillAmount = 0.5f;
         }
-
-        CreatePhotos(suspectsNumber);
     }
 
-    private void CreatePhotos(int num)
+    private int CreatePhotos()
     {
         string names = File.ReadAllText(System.IO.Directory.GetCurrentDirectory() + "/Files/Names/" + "names" + FindObjectOfType<GameManager>().currentCaseNum + ".txt");
         string[] tmp = names.Split('/');
 
         float nextPosPhoto = 11.8f;
-        for (int i = 0; i < num; i++)
+        for (int i = 0; i < tmp.Length; i++)
         {
             print("Textures/Sprites/Case" + FindObjectOfType<GameManager>().currentCaseNum + "/photo" + i);
             Sprite sprite = Resources.Load<Sprite>("Sprites/Case" + FindObjectOfType<GameManager>().currentCaseNum + "/photo" + i);
@@ -82,6 +81,8 @@ public class BoardManager : MonoBehaviour
 
             nextPosPhoto -= (progressBarPrefab.GetComponent<RectTransform>().sizeDelta.x - 13.8f);
         }
+
+        return tmp.Length;
     }
 
     public static void Compare(GameObject note, GameObject place)
