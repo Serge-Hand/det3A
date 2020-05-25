@@ -14,6 +14,11 @@ public class ChoiceScript : MonoBehaviour
 
     int photoNum = -1; //Номер выбранной фотографии (0-4, т.е. 1-5)
 
+    /* API
+     * 
+     * Initialize() - Фотографии становятся нажимаемыми, ожидание выбора одной из них, после чего выполняется OnPhotoClick и ThrowDart
+     */
+
     void Start()
     {
         blscr = GameObject.Find("BlackScreen");
@@ -34,7 +39,7 @@ public class ChoiceScript : MonoBehaviour
         dart.SetActive(true);
     }
 
-    public void OnPhotoClick(int num)
+    public void OnPhotoClick(int num) // Вызывается нажатием на фотографию
     {
         photoNum = num; // Ставим, какое фото было нажато
 
@@ -66,7 +71,7 @@ public class ChoiceScript : MonoBehaviour
 
         FindObjectOfType<AudioManager>().Play("hitSound"); // Воспроизвести звук
 
-        yield return new WaitForSeconds(1.0f); // Подождать пока закончится звук
+        yield return new WaitForSeconds(2.0f); // Подождать пока закончится звук
         blscr.SetActive(true); // Уйти в чёрный экран
     }
 }
