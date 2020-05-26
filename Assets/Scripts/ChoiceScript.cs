@@ -11,6 +11,7 @@ public class ChoiceScript : MonoBehaviour
 
     GameObject blscr;
     [SerializeField] GameObject dart;
+    [SerializeField] GameObject cube;
 
     GameObject[] photos;
     int photoNum = -1; //Номер выбранной фотографии (0-4, т.е. 1-5)
@@ -38,6 +39,7 @@ public class ChoiceScript : MonoBehaviour
         }
 
         dart.SetActive(true);
+        cube.SetActive(true);
     }
 
     public void OnPhotoClick(int num) // Вызывается нажатием на фотографию
