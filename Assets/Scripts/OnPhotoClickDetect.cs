@@ -4,6 +4,7 @@ public class OnPhotoClickDetect : MonoBehaviour
 {
     ChoiceScript handler;
     int podozr;
+    bool clickable = true;
 
     public void SetHandler(ChoiceScript h, int num)
     {
@@ -11,8 +12,16 @@ public class OnPhotoClickDetect : MonoBehaviour
         podozr = num;
     }
 
+    public void ClickPossibilityOff()
+    {
+        clickable = false;
+    }
+
     void OnMouseUpAsButton()
     {
-        handler.OnPhotoClick(podozr);
+        if (clickable)
+        {
+            handler.OnPhotoClick(podozr);
+        }
     }
 }

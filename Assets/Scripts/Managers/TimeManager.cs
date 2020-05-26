@@ -35,20 +35,6 @@ public class TimeManager : MonoBehaviour
         }
     }
 
-    void Start()
-    {
-        time_text.text = "8:00";
-    }
-
-    /*
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.G))
-        {
-            AddMinutesToTime(15);
-        }
-    }*/
-
     public void StartTimer(int startHour, int startMinute, int endHour)
     {
         if (startHour < 0 || startHour > 23 || endHour < 0 || endHour > 23) // Часы должны быть между 0 и 23
@@ -131,6 +117,11 @@ public class TimeManager : MonoBehaviour
                 OnTimerEnd();
             }
         }
+    }
+
+    public DayTime GetCurrentDayTime()
+    {
+        return currTime;
     }
 
     public void StopTimer()

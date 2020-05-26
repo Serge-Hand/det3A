@@ -12,6 +12,7 @@ public class Zoom : MonoBehaviour
     private void Start()
     {
         startPosition = transform.position;
+        count = 0;
     }
 
     private void ZoomIn()

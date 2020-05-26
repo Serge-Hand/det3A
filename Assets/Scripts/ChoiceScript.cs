@@ -12,6 +12,7 @@ public class ChoiceScript : MonoBehaviour
     GameObject blscr;
     [SerializeField] GameObject dart;
 
+    GameObject[] photos;
     int photoNum = -1; //Номер выбранной фотографии (0-4, т.е. 1-5)
 
     /* API
@@ -27,7 +28,7 @@ public class ChoiceScript : MonoBehaviour
 
     public void Initialize()
     {
-        GameObject[] photos = GameObject.FindGameObjectsWithTag("photo");
+        photos = GameObject.FindGameObjectsWithTag("photo");
         int i = 0;
         foreach (GameObject p in photos)
         {
@@ -43,7 +44,12 @@ public class ChoiceScript : MonoBehaviour
     {
         photoNum = num; // Ставим, какое фото было нажато
 
-        TextMeshProUGUI txt = blscr.transform.GetComponentInChildren<TextMeshProUGUI>(); //Текст на чёрном экране
+        foreach (GameObject p in photos) // Больше нельзя нажимать на фотографии
+        {
+            p.GetComponent<OnPhotoClickDetect>().ClickPossibilityOff();
+        }
+
+        TextMeshProUGUI txt = blscr.transform.Find("EndCaseText").GetComponentInChildren<TextMeshProUGUI>(); //Текст на чёрном экране
         string newText = null;
         switch (photoNum) // Определяем какой именно текст ставить
         {

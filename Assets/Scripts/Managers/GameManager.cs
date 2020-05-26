@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -13,11 +14,11 @@ public class GameManager : MonoBehaviour
     private List<Note> notes = new List<Note>();
     private List<string> documents = new List<string>();
 
-    [SerializeField] private GameObject documentPrefab;
+    [SerializeField] private GameObject documentPrefab = null;
 
     [SerializeField] GameObject hintPanel = null;
     Animator hintAnim;
-    [SerializeField] private GameObject tutorialManager;
+    [SerializeField] private GameObject tutorialManager = null;
 
     GameObject mainCam;
     GameObject choiceCam;
@@ -28,9 +29,24 @@ public class GameManager : MonoBehaviour
 
     GameObject g_newDayScreen;
     int day = 1;
+    int curHour = 8;
+    int curMin = 0;
+
+    private static GameObject instance;
 
     private void Start()
     {
+        DontDestroyOnLoad(gameObject);
+        if (instance == null)
+            instance = gameObject;
+        else
+            Destroy(gameObject);
+
+        //day = PlayerPrefs.GetInt("day", 1);
+        //int curHour = PlayerPrefs.GetInt("hour", 8);
+        //int curMin = PlayerPrefs.GetInt("minute", 0);
+        //currentCaseNum = PlayerPrefs.GetInt("case", 1);
+
         /*notes.Add(new Note(0, "Test note 0 (Первый, Алиби +)", new List<NoteParameters> { new NoteParameters(1, 0, 0) }));
         notes.Add(new Note(1, "Test note 1 (Первый, Мотив -)", new List<NoteParameters> { new NoteParameters(-1, 1, 0) }));
         notes.Add(new Note(2, "Test note 2 (Третий, Алиби +)", new List<NoteParameters> { new NoteParameters(1, 0, 2) }));*/
@@ -41,11 +57,11 @@ public class GameManager : MonoBehaviour
         //Save();
 
         //При загрузке уровня:
-        currentCaseNum = 1;//определить номер дела
+        currentCaseNum = 1;//определить номер дела //^^^ теперь определяется выше
         Load(currentCaseNum);//загрузить файлы этого дела
         CreateDocuments();//сгенерировать документы
         //создать доску (обязательно после определения номера дела, потому что оно берёт номер дела внутри своих функций)
-        FindObjectOfType<BoardManager>().CreateBoard(4);
+        FindObjectOfType<BoardManager>().CreateBoard();
         //включить туториал на первом уровне (в самом низу старта)
 
         timeMan = GameObject.Find("TimeManager").GetComponent<TimeManager>();
@@ -55,7 +71,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            timeMan.StartTimer(15, 30, 18);
+            timeMan.StartTimer(8, 0, 18);
         }
 
         hintAnim = hintPanel.GetComponent<Animator>();
@@ -102,7 +118,7 @@ public class GameManager : MonoBehaviour
     public void CreateDocuments()
     {
         Zoom[] tmp = FindObjectsOfType<Zoom>();
-        foreach (Zoom z in tmp)//удаляем старые документы со сцены
+        foreach (Zoom z in tmp) //удаляем старые документы со сцены
         {
             Destroy(z.gameObject);
         }
@@ -230,7 +246,7 @@ public class GameManager : MonoBehaviour
 
     public IEnumerator OnEndOfDay()
     {
-        TextMeshProUGUI c_text = g_newDayScreen.GetComponentInChildren<TextMeshProUGUI>();
+        TextMeshProUGUI c_text = g_newDayScreen.transform.Find("NewDayText").GetComponentInChildren<TextMeshProUGUI>();
 
         g_newDayScreen.SetActive(true);
         day++;
@@ -251,5 +267,50 @@ public class GameManager : MonoBehaviour
         //GameObject.Find("GameManager").GetComponent<GameManager>().CameraChoiceSwitch();
 
         timeMan.StopTimer();
+    }
+
+    public void OnEndOfCase()
+    {
+        //PlayerPrefs.SetInt("day", day);
+        //PlayerPrefs.SetInt("hour", timeMan.GetCurrentDayTime().Hour);
+        //PlayerPrefs.SetInt("minute", timeMan.GetCurrentDayTime().Minute);
+        currentCaseNum++;
+        //PlayerPrefs.SetInt("case", currentCaseNum);
+
+        curHour = timeMan.GetCurrentDayTime().Hour;
+        curMin = timeMan.GetCurrentDayTime().Minute;
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        //NewCaseStart();
+        new GameObject().AddComponent<OnSceneLoadScript>();
+    }
+
+    public void NewCaseStart()
+    {
+        Load(currentCaseNum); //загрузить файлы этого дела
+        CreateDocuments(); //сгенерировать документы
+        //создать доску (обязательно после определения номера дела, потому что оно берёт номер дела внутри своих функций)
+        FindObjectOfType<BoardManager>().CreateBoard();
+        //включить туториал на первом уровне (в самом низу старта)
+
+        timeMan = GameObject.Find("TimeManager").GetComponent<TimeManager>();
+        if (timeMan == null)
+        {
+            Debug.LogWarning("TimeManager don't found");
+        }
+        else
+        {
+            timeMan.StartTimer(curHour, curMin, 18);
+        }
+
+        hintAnim = hintPanel.GetComponent<Animator>();
+
+        mainCam =  GameObject.Find("Main Camera");
+        choiceCam = GameObject.Find("Choice Camera");
+        mainCam.SetActive(true);
+        choiceCam.SetActive(false);
+
+        g_newDayScreen = GameObject.Find("NewDayScreen");
+        g_newDayScreen.SetActive(false);
     }
 }
