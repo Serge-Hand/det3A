@@ -65,14 +65,14 @@ public class BoardManager : MonoBehaviour
 
     private int CreatePhotos()
     {
-        string names = File.ReadAllText(System.IO.Directory.GetCurrentDirectory() + "/Files/Names/" + "names" + FindObjectOfType<GameManager>().currentCaseNum + ".txt");
+        string names = File.ReadAllText(System.IO.Directory.GetCurrentDirectory() + "/Files/Names/" + "names" + GameManager.currentCaseNum + ".txt");
         string[] tmp = names.Split('/');
 
         float nextPosPhoto = 11.8f;
         for (int i = 0; i < tmp.Length; i++)
         {
-            print("Textures/Sprites/Case" + FindObjectOfType<GameManager>().currentCaseNum + "/photo" + i);
-            Sprite sprite = Resources.Load<Sprite>("Sprites/Case" + FindObjectOfType<GameManager>().currentCaseNum + "/photo" + i);
+            print("Textures/Sprites/Case" + GameManager.currentCaseNum + "/photo" + i);
+            Sprite sprite = Resources.Load<Sprite>("Sprites/Case" + GameManager.currentCaseNum + "/photo" + i);
             var newPhoto = Instantiate(photoPrefab, new Vector3(15.9f, 19.75f, nextPosPhoto), progressBarPrefab.transform.rotation) as GameObject;
 
             newPhoto.transform.rotation = Quaternion.Euler(0, 360, 90);

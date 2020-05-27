@@ -9,9 +9,9 @@ public class ChoiceScript : MonoBehaviour
     const string p3 = "Фергус Грейсон. Из-за потери основного кормильца семьи, Магдала и ее ребенок будут голодать. Женщине не будет хватать денег на ребенка и себя. Генри не будет ей помогать материально. Магдале придется отдать ребенка в приют, чтобы тот смог жить лучше, чем с ней в нищете.";
     const string p4 = "Магдала Грейсон. Из-за несправедливого обвинения и участи пожизненного заключения, Магдала кончает с собой.";
 
-    GameObject blscr;
-    [SerializeField] GameObject dart;
-    [SerializeField] GameObject cube;
+    GameObject g_blscr;
+    GameObject g_dart;
+    GameObject g_isolator_cube;
 
     GameObject[] photos;
     int photoNum = -1; //Номер выбранной фотографии (0-4, т.е. 1-5)
@@ -21,10 +21,16 @@ public class ChoiceScript : MonoBehaviour
      * Initialize() - Фотографии становятся нажимаемыми, ожидание выбора одной из них, после чего выполняется OnPhotoClick и ThrowDart
      */
 
-    void Start()
+    public void Start()
     {
-        blscr = GameObject.Find("BlackScreen");
-        blscr.SetActive(false);
+        g_blscr = GameObject.Find("BlackScreen");
+        g_blscr.SetActive(false);
+
+        g_isolator_cube = GameObject.Find("IsolatorCube");
+        g_isolator_cube.SetActive(false);
+
+        g_dart = GameObject.Find("Dart");
+        g_dart.SetActive(false);
     }
 
     public void Initialize()
@@ -38,8 +44,8 @@ public class ChoiceScript : MonoBehaviour
             i++;
         }
 
-        dart.SetActive(true);
-        cube.SetActive(true);
+        g_dart.SetActive(true);
+        g_isolator_cube.SetActive(true);
     }
 
     public void OnPhotoClick(int num) // Вызывается нажатием на фотографию
@@ -51,7 +57,7 @@ public class ChoiceScript : MonoBehaviour
             p.GetComponent<OnPhotoClickDetect>().ClickPossibilityOff();
         }
 
-        TextMeshProUGUI txt = blscr.transform.Find("EndCaseText").GetComponentInChildren<TextMeshProUGUI>(); //Текст на чёрном экране
+        TextMeshProUGUI txt = g_blscr.transform.Find("EndCaseText").GetComponentInChildren<TextMeshProUGUI>(); //Текст на чёрном экране
         string newText = null;
         switch (photoNum) // Определяем какой именно текст ставить
         {
@@ -80,6 +86,6 @@ public class ChoiceScript : MonoBehaviour
         FindObjectOfType<AudioManager>().Play("hitSound"); // Воспроизвести звук
 
         yield return new WaitForSeconds(2.0f); // Подождать пока закончится звук
-        blscr.SetActive(true); // Уйти в чёрный экран
+        g_blscr.SetActive(true); // Уйти в чёрный экран
     }
 }
