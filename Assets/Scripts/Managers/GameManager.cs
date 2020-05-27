@@ -5,6 +5,8 @@ using System.IO;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using System.Security.Cryptography;
+using UnityEngine.UIElements;
 
 public class GameManager : MonoBehaviour
 {
@@ -20,6 +22,8 @@ public class GameManager : MonoBehaviour
     Animator hintAnim;
     [SerializeField] private GameObject tutorialManager = null;
 
+    TextMeshProUGUI c_money_text;
+
     GameObject mainCam;
     GameObject choiceCam;
 
@@ -32,7 +36,7 @@ public class GameManager : MonoBehaviour
     static int curHour = 8;
     static int curMin = 0;
 
-    //private static GameObject instance; // Ссылка на первый gameobject, чтобы он оставался единственным
+    public static int money = 100;
 
     private void Start()
     {
@@ -65,6 +69,9 @@ public class GameManager : MonoBehaviour
 
         g_newDayScreen = GameObject.Find("NewDayScreen");
         g_newDayScreen.SetActive(false);
+
+        c_money_text = GameObject.Find("MoneyPanel").transform.GetComponentInChildren<TextMeshProUGUI>();
+        MoneyToScreen(money);
 
         if (currentCaseNum == 1)
         {
@@ -230,6 +237,8 @@ public class GameManager : MonoBehaviour
 
     public IEnumerator OnEndOfDay()
     {
+        AddMoney(-30);
+
         TextMeshProUGUI c_text = g_newDayScreen.transform.Find("NewDayText").GetComponentInChildren<TextMeshProUGUI>();
 
         g_newDayScreen.SetActive(true);
@@ -261,5 +270,21 @@ public class GameManager : MonoBehaviour
         curMin = timeMan.GetCurrentDayTime().Minute;
 
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    private void MoneyToScreen(int m)
+    {
+        c_money_text.text = m.ToString() + " £";
+    }
+
+    public void AddMoney(int m)
+    {
+        money += m;
+        if (money < 0)
+        {
+            money = 0;
+            //Что-то плохое
+        }
+        MoneyToScreen(money);
     }
 }
