@@ -4900,9 +4900,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   documentPrefab: {fileID: 4935713052836587528, guid: 9c528f0893cba5b4ba4e0e2610a2d76c,
     type: 3}
-  hintPanel: {fileID: 690849215}
   tutorialManager: {fileID: 1839182230}
-  currentCaseNum: 0
+  currentCaseNum: 1
 --- !u!114 &690023808
 MonoBehaviour:
   m_ObjectHideFlags: 0

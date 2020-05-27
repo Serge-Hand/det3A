@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿/*
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class OnSceneLoadScript : MonoBehaviour
@@ -16,3 +17,4 @@ public class OnSceneLoadScript : MonoBehaviour
         Destroy(gameObject);
     }
 }
+*/

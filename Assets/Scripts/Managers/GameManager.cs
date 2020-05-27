@@ -16,7 +16,8 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private GameObject documentPrefab = null;
 
-    [SerializeField] GameObject hintPanel = null;
+    //[SerializeField] 
+    GameObject hintPanel;
     Animator hintAnim;
     [SerializeField] private GameObject tutorialManager = null;
 
@@ -25,7 +26,7 @@ public class GameManager : MonoBehaviour
 
     TimeManager timeMan;
 
-    public int currentCaseNum;
+    public int currentCaseNum = 1;
 
     GameObject g_newDayScreen;
     int day = 1;
@@ -57,7 +58,8 @@ public class GameManager : MonoBehaviour
         //Save();
 
         //При загрузке уровня:
-        currentCaseNum = 1;//определить номер дела //^^^ теперь определяется выше
+        //currentCaseNum = 1;//определить номер дела //^^^ теперь определяется выше
+        if (currentCaseNum == 0) currentCaseNum = 1;
         Load(currentCaseNum);//загрузить файлы этого дела
         CreateDocuments();//сгенерировать документы
         //создать доску (обязательно после определения номера дела, потому что оно берёт номер дела внутри своих функций)
@@ -71,9 +73,10 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            timeMan.StartTimer(8, 0, 18);
+            timeMan.StartTimer(curMin, curHour, 18);
         }
 
+        hintPanel = GameObject.Find("HintPanel");
         hintAnim = hintPanel.GetComponent<Animator>();
         //audMan = GameObject.Find("AudioManager").GetComponent<AudioManager>();
 
@@ -85,7 +88,10 @@ public class GameManager : MonoBehaviour
         g_newDayScreen = GameObject.Find("NewDayScreen");
         g_newDayScreen.SetActive(false);
 
-        TurnOnTutorial();//включить туториал на первом уровне
+        if (currentCaseNum == 1)
+        {
+            TurnOnTutorial(); //включить туториал на первом уровне
+        }
     }
 
     public void CreateNote(int ID)
@@ -282,9 +288,11 @@ public class GameManager : MonoBehaviour
 
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         //NewCaseStart();
-        new GameObject().AddComponent<OnSceneLoadScript>();
+
+        //new GameObject().AddComponent<OnSceneLoadScript>();
     }
 
+    /*
     public void NewCaseStart()
     {
         Load(currentCaseNum); //загрузить файлы этого дела
@@ -303,6 +311,7 @@ public class GameManager : MonoBehaviour
             timeMan.StartTimer(curHour, curMin, 18);
         }
 
+        hintPanel = GameObject.Find("HintPanel");
         hintAnim = hintPanel.GetComponent<Animator>();
 
         mainCam =  GameObject.Find("Main Camera");
@@ -313,4 +322,5 @@ public class GameManager : MonoBehaviour
         g_newDayScreen = GameObject.Find("NewDayScreen");
         g_newDayScreen.SetActive(false);
     }
+    */
 }
