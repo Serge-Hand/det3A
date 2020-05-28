@@ -43,19 +43,22 @@ public class InterestPointsDragScript : MonoBehaviour
 
 	private void Update()
 	{
-		if (Input.GetMouseButtonDown(0))
+		if (TurnCamera.onPaper)
 		{
-			WhenMouseDown();
-		}
+			if (Input.GetMouseButtonDown(0))
+			{
+				WhenMouseDown();
+			}
 
-		if (Input.GetMouseButton(0))
-		{
-			WhenMouseDrag();
-		}
+			if (Input.GetMouseButton(0))
+			{
+				WhenMouseDrag();
+			}
 
-		if (Input.GetMouseButtonUp(0))
-		{
-			WhenMouseUp();
+			if (Input.GetMouseButtonUp(0))
+			{
+				WhenMouseUp();
+			}
 		}
 	}
 
