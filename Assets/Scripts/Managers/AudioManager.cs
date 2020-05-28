@@ -32,7 +32,7 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    private void Start()
+    public void StartMusic()
     {
         Play("themeMusic");
     }

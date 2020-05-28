@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
     GameObject choiceCam;
 
     TimeManager timeMan;
+    AudioManager c_audMan;
 
     static public int currentCaseNum = 1;
 
@@ -49,16 +50,6 @@ public class GameManager : MonoBehaviour
         FindObjectOfType<BoardManager>().CreateBoard();
         //включить туториал на первом уровне (в самом низу старта)
 
-        timeMan = GameObject.Find("TimeManager").GetComponent<TimeManager>();
-        if (timeMan == null)
-        {
-            Debug.LogWarning("TimeManager don't found");
-        }
-        else
-        {
-            timeMan.StartTimer(curHour, curMin, 18);
-        }
-
         hintPanel = GameObject.Find("HintPanel");
         hintAnim = hintPanel.GetComponent<Animator>();
 
@@ -72,6 +63,19 @@ public class GameManager : MonoBehaviour
 
         c_money_text = GameObject.Find("MoneyPanel").transform.GetComponentInChildren<TextMeshProUGUI>();
         MoneyToScreen(money);
+
+        c_audMan = GameObject.Find("AudioManager").transform.GetComponent<AudioManager>();
+
+        timeMan = GameObject.Find("TimeManager").GetComponent<TimeManager>();
+        if (timeMan == null)
+        {
+            Debug.LogWarning("TimeManager don't found");
+        }
+        else
+        {
+            StartCoroutine(OnFirstDay());
+            //timeMan.StartTimer(curHour, curMin, 18);
+        }
 
         if (currentCaseNum == 1)
         {
@@ -237,18 +241,36 @@ public class GameManager : MonoBehaviour
 
     public IEnumerator OnEndOfDay()
     {
-        AddMoney(-30);
+        AddMoney(-50);
 
         TextMeshProUGUI c_text = g_newDayScreen.transform.Find("NewDayText").GetComponentInChildren<TextMeshProUGUI>();
+        TextMeshProUGUI c_money_text = g_newDayScreen.transform.Find("NewDayMoneyText").GetComponentInChildren<TextMeshProUGUI>();
 
         g_newDayScreen.SetActive(true);
         day++;
         c_text.SetText("День " + day);
+        c_money_text.SetText("<b>-20£</b> за оплату проживания\n<b>-30£</b> на лечение");
 
         yield return new WaitForSeconds(3f);
 
         timeMan.StartTimer(8, 0, 18);
         g_newDayScreen.SetActive(false);
+    }
+
+    public IEnumerator OnFirstDay()
+    {
+        TextMeshProUGUI c_text = g_newDayScreen.transform.Find("NewDayText").GetComponentInChildren<TextMeshProUGUI>();
+        TextMeshProUGUI c_money_text = g_newDayScreen.transform.Find("NewDayMoneyText").GetComponentInChildren<TextMeshProUGUI>();
+
+        g_newDayScreen.SetActive(true);
+        c_text.SetText("День " + day);
+        c_money_text.SetText("");
+
+        yield return new WaitForSeconds(3f);
+
+        timeMan.StartTimer(curHour, curMin, 18);
+        g_newDayScreen.SetActive(false);
+        c_audMan.StartMusic();
     }
 
     public void OnSuspectedChoice() // При выборе подозреваемого сделать...:

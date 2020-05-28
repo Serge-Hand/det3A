@@ -19140,7 +19140,7 @@ GameObject:
   - component: {fileID: 1819356806}
   - component: {fileID: 1819356805}
   m_Layer: 5
-  m_Name: NewDayText (1)
+  m_Name: NewDayMoneyText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19185,7 +19185,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "<b>-30\xA3</b> \u0437\u0430 \u043E\u043F\u043B\u0430\u0442\u0443 \u043F\u0440\u043E\u0436\u0438\u0432\u0430\u043D\u0438\u044F"
+  m_text: "<b>-20\xA3</b> \u0437\u0430 \u043E\u043F\u043B\u0430\u0442\u0443 \u043F\u0440\u043E\u0436\u0438\u0432\u0430\u043D\u0438\u044F\n<b>-30\xA3</b>
+    \u043D\u0430 \u043B\u0435\u0447\u0435\u043D\u0438\u0435"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1c62e30ec4b9573418b937ba4ade6bb7, type: 2}
   m_sharedMaterial: {fileID: -1498213832510733191, guid: 1c62e30ec4b9573418b937ba4ade6bb7,
@@ -19255,12 +19256,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 1819356805}
-    characterCount: 25
+    characterCount: 41
     spriteCount: 0
-    spaceCount: 3
-    wordCount: 4
+    spaceCount: 6
+    wordCount: 7
     linkCount: 0
-    lineCount: 1
+    lineCount: 2
     pageCount: 1
     materialCount: 2
   m_isUsingLegacyAnimationComponent: 0
