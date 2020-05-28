@@ -1,10 +1,10 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class TurnCamera : MonoBehaviour
 {
     private bool isTurning = false;
+    public static bool onPaper = false;
     void Update()
     {
         if (!Input.GetMouseButton(0))
@@ -38,12 +38,15 @@ public class TurnCamera : MonoBehaviour
                 yield return new WaitForSeconds(0.75f);
             }
         if (name.Equals("TurnPaper"))
+        {
+            onPaper = !onPaper;
             if (GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("CamPaper") ||
                 GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("CamBack"))
             {
                 FindObjectOfType<AudioManager>().Play("waveSound");
                 yield return new WaitForSeconds(0.75f);
             }
+        }
         GetComponent<Animator>().ResetTrigger("Turn");
         GetComponent<Animator>().ResetTrigger("TurnPaper");
         isTurning = false;
