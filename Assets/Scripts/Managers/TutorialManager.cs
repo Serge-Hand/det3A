@@ -57,7 +57,7 @@ public class TutorialManager : MonoBehaviour
             case 3:
                 //cam.GetComponent<TurnCamera>().enabled = false;
                 subText.GetComponent<TextMeshProUGUI>().text = "Хм... Кое-какие высказывания можно соединить друг с другом, чтобы восстановить полную картину, а некоторые полноценны сами по себе.";
-                hint.GetComponent<TextMeshProUGUI>().text = "<color=green>Подсказка</color>\nМожно перетягивать одно высказывание на другое либо нажимать на одиночное, чтобы создавать <color=yellow>заметки</color>";
+                hint.GetComponent<TextMeshProUGUI>().text = "<color=green>Подсказка</color>\nМожно нажимать на высказывания и соединять их друг с другом чтобы получать <color=yellow>заметки</color>";
                 NotePrefab[] pr = FindObjectsOfType<NotePrefab>();
                 if (pr.Length > 0)
                 {
@@ -108,17 +108,32 @@ public class TutorialManager : MonoBehaviour
                     tutorialStage++;
                 break;
             case 9:
-                hint.GetComponent<TextMeshProUGUI>().text = "<color=green>Подсказка</color>\nОстался час до конца дня. Можно нажать на <color=yellow>дротики</color> на столе, чтобы выбрать преступника заранее";
+                if (count == 0)
+                {
+                    StartCoroutine(Show());
+                    count++;
+                }
+                break;
+            case 10:
+                hint.GetComponent<TextMeshProUGUI>().text = "<color=green>Подсказка</color>\nМожно нажать на <color=yellow>дротики</color> на столе, чтобы выбрать преступника, если он выявлен, либо продолжить расследование завтра";
                 string[] tim = time.GetComponent<TextMeshProUGUI>().text.Split(':');
                 if (int.Parse(tim[0]) >= 18)
                     tutorialStage++;
                 break;
-            case 10:
+            case 11:
                 hint.GetComponent<TextMeshProUGUI>().text = "";
                 gameObject.SetActive(false);
                 break;
             default:
                 break;
         }
+    }
+
+    IEnumerator Show()
+    {
+        tutorialStage++;
+        subText.GetComponent<TextMeshProUGUI>().text = "Через час конец дня... Я могу отложить это дело на следующий день, но не стоит забывать про ежедневные расходы на аренду и лечение. Чтобы их покрыть, мне надо скорее получить оплату за верно раскрытое дело.";
+        yield return new WaitForSeconds(20f);
+        subText.GetComponent<TextMeshProUGUI>().text = "";
     }
 }
