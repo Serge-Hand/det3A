@@ -34,6 +34,7 @@ public class TypeWriter : MonoBehaviour
         yield return new WaitForSeconds(2f);
         load.SetActive(true);
         yield return new WaitForSeconds(2f);
+        Cursor.visible = true;
         SceneManager.LoadScene("room");
     }
 

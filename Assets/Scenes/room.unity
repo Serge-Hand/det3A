@@ -3317,6 +3317,7 @@ GameObject:
   - component: {fileID: 412620633}
   - component: {fileID: 412620634}
   - component: {fileID: 412620635}
+  - component: {fileID: 412620636}
   m_Layer: 0
   m_Name: Darts
   m_TagString: Untagged
@@ -3364,6 +3365,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 28483914824739f40a3a647bc52763b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &412620636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 412620632}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0e439691ddb51542acbc03f39a460f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &422286688
@@ -12028,6 +12041,18 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -1635193937628524501, guid: b3747db2ac40cd94b9f59beee621ba7b, type: 3}
+--- !u!114 &1432112790
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1432112786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0e439691ddb51542acbc03f39a460f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1441727638
 GameObject:
   m_ObjectHideFlags: 0
