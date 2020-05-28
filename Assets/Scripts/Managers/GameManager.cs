@@ -73,6 +73,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
+            if(currentCaseNum == 1)
             StartCoroutine(OnFirstDay());
             //timeMan.StartTimer(curHour, curMin, 18);
         }
@@ -249,7 +250,7 @@ public class GameManager : MonoBehaviour
         g_newDayScreen.SetActive(true);
         day++;
         c_text.SetText("День " + day);
-        c_money_text.SetText("<b>-20£</b> за оплату проживания\n<b>-30£</b> на лечение");
+        c_money_text.SetText("<b>-20£</b> за аренду\n<b>-30£</b> на лечение");
 
         yield return new WaitForSeconds(3f);
 
@@ -308,5 +309,17 @@ public class GameManager : MonoBehaviour
             //Что-то плохое
         }
         MoneyToScreen(money);
+    }
+
+    public void StopTimerAndSaveTime()
+    {
+        timeMan.StopTimer();
+        curHour = timeMan.GetCurrentDayTime().Hour;
+        curMin = timeMan.GetCurrentDayTime().Minute;
+    }
+
+    public void StartTimerWithCurrenTime()
+    {
+        timeMan.StartTimer(curHour, curMin, 18);
     }
 }

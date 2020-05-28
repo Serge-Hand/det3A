@@ -2,16 +2,6 @@
 
 public class OnDartClick : MonoBehaviour
 {
-    void Start()
-    {
-        
-    }
-
-    void Update()
-    {
-        
-    }
-
     private void OnMouseUpAsButton()
     {
         //Debug.Log("Darts");
