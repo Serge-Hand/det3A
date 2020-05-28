@@ -10,6 +10,7 @@ public class ChoiceScript : MonoBehaviour
     const string p3 = "Фергус Грейсон. Из-за потери основного кормильца семьи, Магдала и ее ребенок будут голодать. Женщине не будет хватать денег на ребенка и себя. Генри не будет ей помогать материально. Магдале придется отдать ребенка в приют, чтобы тот смог жить лучше, чем с ней в нищете.";
     const string p4 = "Магдала Грейсон. Из-за несправедливого обвинения и участи пожизненного заключения, Магдала кончает с собой.";*/
 
+    GameManager gameMan;
     GameObject g_blscr;
     GameObject g_dart;
     GameObject g_isolator_cube;
@@ -24,6 +25,8 @@ public class ChoiceScript : MonoBehaviour
 
     public void Start()
     {
+        gameMan = GameObject.Find("GameManager").GetComponent<GameManager>();
+
         g_blscr = GameObject.Find("BlackScreen");
         g_blscr.SetActive(false);
 
@@ -62,7 +65,7 @@ public class ChoiceScript : MonoBehaviour
         string allResults = File.ReadAllText(System.IO.Directory.GetCurrentDirectory() + "/Files/Other/" + "results" + GameManager.currentCaseNum + ".txt");
         string[] tmp = allResults.Split('/');
 
-        TextMeshProUGUI txt = g_blscr.transform.Find("EndCaseText").GetComponentInChildren<TextMeshProUGUI>(); //Текст на чёрном экране
+        TextMeshProUGUI txt = g_blscr.transform.Find("EndCaseText").GetComponentInChildren<TextMeshProUGUI>(); // Основной текст на чёрном экране
         string newText;
         switch (photoNum) // Определяем какой именно текст ставить
         {
@@ -81,6 +84,17 @@ public class ChoiceScript : MonoBehaviour
             isCorrect = true;
         else
             isCorrect = false;
+
+        TextMeshProUGUI txt_money = g_blscr.transform.Find("EndCaseMoneyText").GetComponentInChildren<TextMeshProUGUI>();
+        if (isCorrect)
+        {
+            txt_money.text = "<color=green>" + payment + " £</color>";
+            gameMan.AddMoney(payment);
+        }
+        else
+        {
+            txt_money.text = "<color=red>0 £</color>";
+        }
 
         StartCoroutine(ThrowDart(num)); // Запускаем процесс запуска дротика (анимация и звук)
     }
