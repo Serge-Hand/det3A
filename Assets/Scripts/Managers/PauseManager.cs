@@ -7,6 +7,7 @@ public class PauseManager : MonoBehaviour
     GameManager c_gameMan;
     bool onPause;
     GameObject mainIsolatorCube;
+    BoxCollider isolCube;
 
     void Start()
     {
@@ -17,7 +18,8 @@ public class PauseManager : MonoBehaviour
         onPause = false;
 
         mainIsolatorCube = GameObject.Find("MainIsolatorCube");
-        mainIsolatorCube.SetActive(false);
+        isolCube = mainIsolatorCube.GetComponent<BoxCollider>();
+        isolCube.enabled = false;
     }
 
     void Update()
@@ -33,7 +35,7 @@ public class PauseManager : MonoBehaviour
                 onPause = true;
                 pausePanel.SetActive(true);
                 c_gameMan.StopTimerAndSaveTime();
-                mainIsolatorCube.SetActive(true);
+                isolCube.enabled = true;
             }
         }
     }
@@ -43,7 +45,7 @@ public class PauseManager : MonoBehaviour
         onPause = false;
         pausePanel.SetActive(false);
         c_gameMan.StartTimerWithCurrenTime();
-        mainIsolatorCube.SetActive(false);
+        isolCube.enabled = false;
     }
 
     public void OnExitButtonClick()

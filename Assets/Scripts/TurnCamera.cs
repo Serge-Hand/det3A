@@ -39,7 +39,11 @@ public class TurnCamera : MonoBehaviour
             }
         if (name.Equals("TurnPaper"))
         {
-            onPaper = !onPaper;
+            if (GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("CamPaper") ||
+                   GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("idle"))
+            {
+                onPaper = !onPaper;
+            }
             if (GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("CamPaper") ||
                 GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("CamBack"))
             {

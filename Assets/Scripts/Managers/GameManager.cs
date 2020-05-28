@@ -39,6 +39,9 @@ public class GameManager : MonoBehaviour
 
     public static int money = 100;
 
+    GameObject mainIsolatorCube;
+    BoxCollider isolCube;
+
     private void Start()
     {
         //При загрузке уровня:
@@ -66,6 +69,10 @@ public class GameManager : MonoBehaviour
 
         c_audMan = GameObject.Find("AudioManager").transform.GetComponent<AudioManager>();
 
+        mainIsolatorCube = GameObject.Find("MainIsolatorCube");
+        isolCube = mainIsolatorCube.GetComponent<BoxCollider>();
+        isolCube.enabled = false;
+
         timeMan = GameObject.Find("TimeManager").GetComponent<TimeManager>();
         if (timeMan == null)
         {
@@ -81,6 +88,11 @@ public class GameManager : MonoBehaviour
         if (currentCaseNum == 1)
         {
             TurnOnTutorial(); //включить туториал на первом уровне
+        }
+        else
+        {
+            timeMan.StartTimer(curHour, curMin, 18);
+            c_audMan.StartMusic(); // Сразу включать музыку, если это не первое дело
         }
     }
 
@@ -251,11 +263,13 @@ public class GameManager : MonoBehaviour
         day++;
         c_text.SetText("День " + day);
         c_money_text.SetText("<b>-20£</b> за аренду\n<b>-30£</b> на лечение");
+        isolCube.enabled = true;
 
         yield return new WaitForSeconds(3f);
 
         timeMan.StartTimer(8, 0, 18);
         g_newDayScreen.SetActive(false);
+        isolCube.enabled = false;
     }
 
     public IEnumerator OnFirstDay()
