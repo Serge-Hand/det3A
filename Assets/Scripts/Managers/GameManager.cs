@@ -5,8 +5,6 @@ using System.IO;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
-using System.Security.Cryptography;
-using UnityEngine.UIElements;
 
 public class GameManager : MonoBehaviour
 {
@@ -321,6 +319,11 @@ public class GameManager : MonoBehaviour
         {
             money = 0;
             //Что-то плохое
+            TextMeshProUGUI c_text = g_newDayScreen.transform.Find("NewDayText").GetComponentInChildren<TextMeshProUGUI>();
+            TextMeshProUGUI c_money_text = g_newDayScreen.transform.Find("NewDayMoneyText").GetComponentInChildren<TextMeshProUGUI>();
+            c_text.text = "";
+            c_money_text.text = "";
+            SceneManager.LoadScene("ending");
         }
         MoneyToScreen(money);
     }
