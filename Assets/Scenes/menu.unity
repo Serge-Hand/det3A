@@ -385,6 +385,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b056825ec58377b4780a705d87543430, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cursor: {fileID: 2800000, guid: f31325e333528684bb643ab43cc979cc, type: 3}
 --- !u!1 &570687996
 GameObject:
   m_ObjectHideFlags: 0
@@ -588,7 +589,7 @@ MonoBehaviour:
   m_material: {fileID: 0}
   m_sharedMaterial: {fileID: 0}
   m_isDefaultMaterial: 0
-  m_padding: 1.25
+  m_padding: 0
   m_canvasRenderer: {fileID: 956641819}
   m_TextComponent: {fileID: 1950914674}
   m_materialReferenceIndex: 2
@@ -1204,6 +1205,7 @@ GameObject:
   - component: {fileID: 1950914674}
   - component: {fileID: 1950914676}
   - component: {fileID: 1950914677}
+  - component: {fileID: 1950914678}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -1418,6 +1420,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ab96657ae6c47944bd7b9f14b5bdfee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1950914678
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1950914672}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0e439691ddb51542acbc03f39a460f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2067428939
 GameObject:
   m_ObjectHideFlags: 0
@@ -1479,7 +1493,7 @@ MonoBehaviour:
   m_material: {fileID: 0}
   m_sharedMaterial: {fileID: 0}
   m_isDefaultMaterial: 0
-  m_padding: 1.25
+  m_padding: 0
   m_canvasRenderer: {fileID: 2067428942}
   m_TextComponent: {fileID: 1271645361}
   m_materialReferenceIndex: 1

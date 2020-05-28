@@ -360,6 +360,7 @@ GameObject:
   - component: {fileID: 4935713052836587533}
   - component: {fileID: 4935713052836587530}
   - component: {fileID: 4935713052836587531}
+  - component: {fileID: 261779585999959905}
   m_Layer: 0
   m_Name: document
   m_TagString: Searchable
@@ -468,3 +469,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: babe5547a6cdd364597af2ee550516b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &261779585999959905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4935713052836587528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0e439691ddb51542acbc03f39a460f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cursorArrow: {fileID: 2800000, guid: ff2363f44b63bce49ad348b46b00edde, type: 3}
+  cursorClick: {fileID: 2800000, guid: 382afb69e836afd4cb87775bc1bea22a, type: 3}

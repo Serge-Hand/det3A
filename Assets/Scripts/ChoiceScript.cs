@@ -42,6 +42,7 @@ public class ChoiceScript : MonoBehaviour
         {
             p.AddComponent<BoxCollider>();
             p.AddComponent<OnPhotoClickDetect>().SetHandler(this, i);
+            p.AddComponent<CursorChange>();
             i++;
         }
 
