@@ -18,6 +18,16 @@ public class TypeWriter : MonoBehaviour
         FindObjectOfType<AudioManager>().Play("ambient");
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown("f"))
+        {
+            load.SetActive(true);
+            Cursor.visible = true;
+            SceneManager.LoadScene("room");
+        }
+    }
+
     IEnumerator Intro()
     {
         yield return new WaitForSeconds(1f);
