@@ -122,6 +122,7 @@ public class TutorialManager : MonoBehaviour
                 break;
             case 11:
                 hint.GetComponent<TextMeshProUGUI>().text = "";
+                subText.GetComponent<TextMeshProUGUI>().text = "";
                 gameObject.SetActive(false);
                 break;
             default:
