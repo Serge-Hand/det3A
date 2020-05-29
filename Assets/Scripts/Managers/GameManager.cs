@@ -43,6 +43,11 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         //При загрузке уровня:
+        if (currentCaseNum == 5)
+        {
+            SceneManager.LoadScene("happyEnding");
+            return;
+        }
         
         if (currentCaseNum == 0) currentCaseNum = 1; //определить номер дела (хранится в currentCaseNum)
         Load(currentCaseNum); //загрузить файлы этого дела

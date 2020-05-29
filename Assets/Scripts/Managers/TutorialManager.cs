@@ -12,11 +12,13 @@ public class TutorialManager : MonoBehaviour
     public GameObject subText;
     public GameObject hint;
     public GameObject time;
+    public GameObject dart;
 
     private void Start()
     {
         tutorialStage = 0;
         cam.GetComponent<TurnCamera>().enabled = false;
+        dart.GetComponent<BoxCollider>().enabled = false;
     }
 
     private int count = 0;
@@ -103,6 +105,7 @@ public class TutorialManager : MonoBehaviour
             case 8:
                 subText.GetComponent<TextMeshProUGUI>().text = "";
                 hint.GetComponent<TextMeshProUGUI>().text = "";
+                dart.GetComponent<BoxCollider>().enabled = true;
                 string[] ti = time.GetComponent<TextMeshProUGUI>().text.Split(':');
                 if (int.Parse(ti[0]) >= 17)
                     tutorialStage++;
