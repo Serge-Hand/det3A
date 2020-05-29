@@ -88,7 +88,7 @@ public class ChoiceScript : MonoBehaviour
         TextMeshProUGUI txt_money = g_blscr.transform.Find("EndCaseMoneyText").GetComponentInChildren<TextMeshProUGUI>();
         if (isCorrect)
         {
-            txt_money.text = "<color=green>" + payment + " £</color>";
+            txt_money.text = "<color=green>+" + payment + " £</color>";
             gameMan.AddMoney(payment);
         }
         else

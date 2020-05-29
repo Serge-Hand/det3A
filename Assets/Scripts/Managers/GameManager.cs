@@ -280,7 +280,7 @@ public class GameManager : MonoBehaviour
         c_text.enabled = true;
         c_money_text.enabled = true;
 
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(4.5f);
 
         timeMan.StartTimer(8, 0, 18);
         g_newDayScreen.SetActive(false);
