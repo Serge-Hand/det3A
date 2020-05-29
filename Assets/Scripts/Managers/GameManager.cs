@@ -5,6 +5,7 @@ using System.IO;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -37,7 +38,6 @@ public class GameManager : MonoBehaviour
 
     public static int money = 100;
 
-    GameObject mainIsolatorCube;
     BoxCollider isolCube;
 
     private void Start()
@@ -67,8 +67,7 @@ public class GameManager : MonoBehaviour
 
         c_audMan = GameObject.Find("AudioManager").transform.GetComponent<AudioManager>();
 
-        mainIsolatorCube = GameObject.Find("MainIsolatorCube");
-        isolCube = mainIsolatorCube.GetComponent<BoxCollider>();
+        isolCube = GameObject.Find("MainIsolatorCube").GetComponent<BoxCollider>();
         isolCube.enabled = false;
 
         timeMan = GameObject.Find("TimeManager").GetComponent<TimeManager>();
@@ -256,17 +255,36 @@ public class GameManager : MonoBehaviour
 
         TextMeshProUGUI c_text = g_newDayScreen.transform.Find("NewDayText").GetComponentInChildren<TextMeshProUGUI>();
         TextMeshProUGUI c_money_text = g_newDayScreen.transform.Find("NewDayMoneyText").GetComponentInChildren<TextMeshProUGUI>();
+        Image blackChange = g_newDayScreen.GetComponent<Image>();
 
+        isolCube.enabled = true;
+
+        c_text.enabled = false;
+        c_money_text.enabled = false;
         g_newDayScreen.SetActive(true);
+
+        c_audMan.Play("bellSound");
+
+        blackChange.color = new Color(blackChange.color.r, blackChange.color.g, blackChange.color.b, 0);
+        float a = 0;
+        while(blackChange.color.a <= 0.98f)
+        {
+            blackChange.color = new Color(blackChange.color.r, blackChange.color.g, blackChange.color.b, a);
+            a += 0.01f;
+            yield return new WaitForSeconds(0.01f);
+        }
+
         day++;
         c_text.SetText("День " + day);
         c_money_text.SetText("<b>-20£</b> за аренду\n<b>-30£</b> на лечение");
-        isolCube.enabled = true;
+        c_text.enabled = true;
+        c_money_text.enabled = true;
 
         yield return new WaitForSeconds(3f);
 
         timeMan.StartTimer(8, 0, 18);
         g_newDayScreen.SetActive(false);
+
         isolCube.enabled = false;
     }
 
