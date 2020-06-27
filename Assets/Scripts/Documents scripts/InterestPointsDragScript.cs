@@ -10,14 +10,14 @@ public class InterestPointsDragScript : MonoBehaviour
 
 	Vector3 camPos;
 
-	//TMP_Text tmp_text = null;
-	TextMeshPro tmp_text = null;
-	TextMeshProUGUI tmp_text_ugui = null;
+	TMP_Text tmp_text = null;
+	//TextMeshPro tmp_text = null;
+	//TextMeshProUGUI tmp_text_ugui = null;
 
 	int first_link_index;
 
 	TimeManager timeMan;
-
+	/*
 	void Start()
 	{
 		line = gameObject.AddComponent<LineRenderer>();
@@ -61,7 +61,7 @@ public class InterestPointsDragScript : MonoBehaviour
 			}
 		}
 	}
-
+	
 	void WhenMouseDown() // Если нажата ЛКМ и Если она попадает на ссылку - Запоминаем начальную точку линии; Включаем линию и Запоминаем данную ссылку (по индексу) 
 	{
 		if (tmp_text != null)
@@ -191,9 +191,9 @@ public class InterestPointsDragScript : MonoBehaviour
 		}
 	}
 }
+*/
 
 
-/*
 void Start()
 {
 	line = gameObject.AddComponent<LineRenderer>();
@@ -235,6 +235,8 @@ private void Update()
 	}
 }
 
+
+	
 void WhenMouseDown() // Если нажата ЛКМ и Если она попадает на ссылку - Запоминаем начальную точку линии; Включаем линию и Запоминаем данную ссылку (по индексу) 
 {
 	Camera cam = null;
@@ -319,11 +321,11 @@ void WhenMouseUp() // Окончание рисования линии; Если
 
 			if (tmp_text_2.Equals(typeof(TextMeshProUGUI)))
 			{
-				second_link_index = TMP_TextUtilities.FindIntersectingLink((TextMeshProUGUI)Convert.ChangeType(tmp_text_2, typeof(TextMeshPro)), Input.mousePosition, cam);
+				second_link_index = TMP_TextUtilities.FindIntersectingLink(tmp_text_2, Input.mousePosition, cam);
 			}
 			else
 			{
-				second_link_index = TMP_TextUtilities.FindIntersectingLink((TextMeshPro)Convert.ChangeType(tmp_text_2, typeof(TextMeshPro)), Input.mousePosition, cam);
+				second_link_index = TMP_TextUtilities.FindIntersectingLink(tmp_text_2, Input.mousePosition, cam);
 			}
 
 			if (second_link_index != -1)
@@ -336,7 +338,7 @@ void WhenMouseUp() // Окончание рисования линии; Если
 
 				timeMan.AddMinutesToTime(TimeManager.c_linksMinutesPlus); // Количество минут, которые тратятся на соединение точек интереса задаётся в TimeManager
 
-				LinkProcess.CheckLinks(
+					FindObjectOfType<LinkProcess>().CheckLinks(
 					tmp_text_2.textInfo.linkInfo[first_link_index].GetLinkID(),
 					tmp_text_2.textInfo.linkInfo[first_link_index].GetLinkText(),
 					tmp_text_2.textInfo.linkInfo[second_link_index].GetLinkID(),
@@ -345,5 +347,5 @@ void WhenMouseUp() // Окончание рисования линии; Если
 		}
 }
 }
-*/
+
   
